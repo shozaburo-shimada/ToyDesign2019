@@ -53,6 +53,9 @@ draw2 = ImageDraw.Draw(image2)
 draw1.rectangle((0,0,width1,height2), outline=0, fill=0)
 draw2.rectangle((0,0,width2,height2),outline=0, fill=0)
 
+ratio_x = 0.5
+ratio_y = 0.5
+
 # "while True:" is same as "loop()" of Arduino
 while True:
     ret, img = cap.read()
@@ -67,17 +70,43 @@ while True:
     for (x,y,w,h) in faces:
         cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
         roi_gray = gray[y:y+h, x:x+w]
-        roi_color = img[y:y+h, x:x+w]  
+        roi_color = img[y:y+h, x:x+w]
+        ctr_x = x + float(w / 2)
+        ctr_y = y + float(h / 2)
+        ratio_x = ctr_x / 640
+        ratio_y = ctr_y / 480
+
+        #print( "x: " + str(x) + ", y: " + str(y) + ", w: " + str(w) + ", h: " + str(h) + ", c_x: " + str(ctr_x) + ", c_y: " + str(ctr_y) + ", r_x: " + str(ratio_x) + ", r_y: " + str(ratio_y))
+
     cv2.imshow('video',img)
 
-    ratio_x = ((x + w) / 2) / 640
-    ratio_y = ((y + h) / 2) / 480
+    ## Clear Display
+    draw1.rectangle((0, 0, width1, height1), outline=0, fill=0)
+    draw2.rectangle((0, 0, width2, height2), outline=0, fill=0)
 
-    cx = 128 * ratio_x
+    #ratio_x = ((x + w) / 2) / 640
+    #ratio_y = ((y + h) / 2) / 480
+
+    cx = 128 - (128 * ratio_x)
     cy = 64 * ratio_y
+    #print("cx: " + str(cx) + ", cy: " + str(cy))    
     cr = 35
-    draw1.ellipse((cx - cr, cy - cr, cx + cr, cy + cr), outline=1, fill=1)
-    draw2.ellipse((cx - cr, cy - cr, cx + cr, cy + cr), outline=1, fill=1)
+    ew = 50 / 2
+    eh = 70 / 2
+
+    #draw1.ellipse((cx - cr, cy - cr, cx + cr, cy + cr), outline=1, fill=1)
+    #draw2.ellipse((cx - cr, cy - cr, cx + cr, cy + cr), outline=1, fill=1)
+    
+    draw1.ellipse((cx - ew, cy - eh, cx + ew, cy + eh), outline=1, fill=1)
+    draw2.ellipse((cx - ew, cy - eh, cx + ew, cy + eh), outline=1, fill=1)
+
+
+    ##Display image
+    disp1.image(image1)
+    disp2.image(image2)
+    disp1.display()
+    disp2.display()
+    #time.sleep(.1)
 
     ##Quit
     k = cv2.waitKey(30) & 0xff
