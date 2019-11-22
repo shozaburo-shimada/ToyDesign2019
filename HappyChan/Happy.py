@@ -55,6 +55,10 @@ draw2.rectangle((0,0,width2,height2),outline=0, fill=0)
 
 ratio_x = 0.5
 ratio_y = 0.5
+target_cx = 128 * ratio_x
+target_cy = 64 * ratio_y
+cx = target_cx
+cy = target_cy
 
 # "while True:" is same as "loop()" of Arduino
 while True:
@@ -63,19 +67,20 @@ while True:
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     faces = faceCascade.detectMultiScale(
         gray,     
-        scaleFactor=1.2,
+        scaleFactor=1.3,
         minNeighbors=5,     
         minSize=(20, 20)
     )
     for (x,y,w,h) in faces:
         cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
-        roi_gray = gray[y:y+h, x:x+w]
-        roi_color = img[y:y+h, x:x+w]
+        #roi_gray = gray[y:y+h, x:x+w]
+        #roi_color = img[y:y+h, x:x+w]
         ctr_x = x + float(w / 2)
         ctr_y = y + float(h / 2)
         ratio_x = ctr_x / 640
         ratio_y = ctr_y / 480
-
+        target_cx = 128 - (128 * ratio_x)
+        target_cy = 64 * ratio_y
         #print( "x: " + str(x) + ", y: " + str(y) + ", w: " + str(w) + ", h: " + str(h) + ", c_x: " + str(ctr_x) + ", c_y: " + str(ctr_y) + ", r_x: " + str(ratio_x) + ", r_y: " + str(ratio_y))
 
     cv2.imshow('video',img)
@@ -84,22 +89,28 @@ while True:
     draw1.rectangle((0, 0, width1, height1), outline=0, fill=0)
     draw2.rectangle((0, 0, width2, height2), outline=0, fill=0)
 
-    #ratio_x = ((x + w) / 2) / 640
-    #ratio_y = ((y + h) / 2) / 480
+    #Smoothing...?
+    if abs(cx - target_cx) > 5:
+      if cx > target_cx:
+        cx = cx - 5
+      elif cx < target_cx:
+        cx = cx + 5
 
-    cx = 128 - (128 * ratio_x)
-    cy = 64 * ratio_y
-    #print("cx: " + str(cx) + ", cy: " + str(cy))    
-    cr = 35
+    if abs(cy - target_cy) > 5:
+      if cy > target_cy:
+        cy = cy - 5
+      elif cy < target_cy:
+        cy = cy + 5
+
+    print("tx: " + str(target_cx) + ", ty: " + str(target_cy) + ", cx: " + str(cx) + ", cy: " + str(cy))
+
     ew = 50 / 2
     eh = 70 / 2
 
-    #draw1.ellipse((cx - cr, cy - cr, cx + cr, cy + cr), outline=1, fill=1)
-    #draw2.ellipse((cx - cr, cy - cr, cx + cr, cy + cr), outline=1, fill=1)
-    
-    draw1.ellipse((cx - ew, cy - eh, cx + ew, cy + eh), outline=1, fill=1)
-    draw2.ellipse((cx - ew, cy - eh, cx + ew, cy + eh), outline=1, fill=1)
-
+    #draw1.ellipse((cx - ew, cy - eh, cx + ew, cy + eh), outline=1, fill=1)
+    #draw2.ellipse((cx - ew, cy - eh, cx + ew, cy + eh), outline=1, fill=1)
+    draw1.ellipse((target_cx - ew, target_cy - eh, target_cx + ew, target_cy + eh), outline=1, fill=1)
+    draw2.ellipse((target_cx - ew, target_cy - eh, target_cx + ew, target_cy + eh), outline=1, fill=1)
 
     ##Display image
     disp1.image(image1)
@@ -111,7 +122,7 @@ while True:
     ##Quit
     k = cv2.waitKey(30) & 0xff
     if k == 27: # press 'ESC' to quit
-        break
+      break
 
 # Finalize Face Detection
 cap.release()

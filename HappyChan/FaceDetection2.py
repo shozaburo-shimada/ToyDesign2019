@@ -1,10 +1,12 @@
-import cv2.cv as cv
+#import cv2.cv as cv
 import cv2
 import threading
 
-cv.NamedWindow("camera", 1)
+#cv.NamedWindow("camera", 1)
 
 capture = cv2.VideoCapture(0)
+capture.set(3, 640)
+capture.set(4, 480)
 
 count = 0
 faces = []
@@ -37,6 +39,10 @@ while True:
     for (x, y, w, h) in faces:
         cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
     cv2.imshow("camera", img)
-    if cv.WaitKey(10) > 0:
+
+    k =  cv2.waitKey(30) & 0xff
+    if k == 27:
       break
-cv.DestroyAllWindows()
+
+capture.release()
+cv2.destroyAllWindows()
