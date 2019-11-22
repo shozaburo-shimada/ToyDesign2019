@@ -13,32 +13,46 @@ import subprocess
 RST = None     # on the PiOLED this pin isnt used
  
 # Note you can change the I2C address by passing an i2c_address parameter like:
-disp = Adafruit_SSD1306.SSD1306_128_64(rst=RST, i2c_address=0x3C)
- 
+disp1 = Adafruit_SSD1306.SSD1306_128_64(rst=RST, i2c_address=0x3C)
+disp2 = Adafruit_SSD1306.SSD1306_128_64(rst=RST, i2c_address=0x3D)
+
 # Initialize library.
-disp.begin()
+disp1.begin()
+disp2.begin()
+
  
 # Clear display.
-disp.clear()
-disp.display()
+disp1.clear()
+disp2.clear()
+disp1.display()
+disp2.display()
+
  
 # Create blank image for drawing.
 # Make sure to create image with mode '1' for 1-bit color.
-width = disp.width
-height = disp.height
-image = Image.new('1', (width, height))
+width1 = disp1.width
+height1 = disp1.height
+image1 = Image.new('1', (width1, height1))
+
+width2 = disp2.width
+height2 = disp2.height
+image2 = Image.new('1', (width2, height2))
+
  
 # Get drawing object to draw on image.
-draw = ImageDraw.Draw(image)
+draw1 = ImageDraw.Draw(image1)
+draw2 = ImageDraw.Draw(image2)
+
  
 # Draw a black filled box to clear the image.
-draw.rectangle((0,0,width,height), outline=0, fill=0)
+draw1.rectangle((0,0,width1,height2), outline=0, fill=0)
+draw2.rectangle((0,0,width2,height2),outline=0, fill=0)
  
 # Draw some shapes.
 # First define some constants to allow easy resizing of shapes.
 padding = -2
 top = padding
-bottom = height-padding
+bottom = height1-padding
 # Move left to right keeping track of the current x position for drawing shapes.
 x = 0
  
@@ -53,26 +67,22 @@ font = ImageFont.load_default()
 while True:
  
     # Draw a black filled box to clear the image.
-    draw.rectangle((0,0,width,height), outline=0, fill=0)
- 
-    # Shell scripts for system monitoring from here : https://unix.stackexchange.com/questions/119126/command-to-display-memory-usage-disk-usage-and-cpu-load
-    cmd = "hostname -I | cut -d\' \' -f1"
-    IP = subprocess.check_output(cmd, shell = True )
-    cmd = "top -bn1 | grep load | awk '{printf \"CPU Load: %.2f\", $(NF-2)}'"
-    CPU = subprocess.check_output(cmd, shell = True )
-    cmd = "free -m | awk 'NR==2{printf \"Mem: %s/%sMB %.2f%%\", $3,$2,$3*100/$2 }'"
-    MemUsage = subprocess.check_output(cmd, shell = True )
-    cmd = "df -h | awk '$NF==\"/\"{printf \"Disk: %d/%dGB %s\", $3,$2,$5}'"
-    Disk = subprocess.check_output(cmd, shell = True )
- 
-    # Write two lines of text.
- 
-    draw.text((x, top),       "IP: " + str(IP),  font=font, fill=255)
-    draw.text((x, top+8),     str(CPU), font=font, fill=255)
-    draw.text((x, top+16),    str(MemUsage),  font=font, fill=255)
-    draw.text((x, top+25),    str(Disk),  font=font, fill=255)
- 
+    draw1.rectangle((0,0,width1,height1), outline=0, fill=0)
+    draw2.rectangle((0,0,width2,height2), outline=0, fill=0) 
+
+    # Draw Object
+    cx = 64 # center of circle, x
+    cy = 32 # center of circle, y
+    cr = 35 # radius of circle
+    eh = 70 # height of ellipse
+    ew = 40 # width of ellipse
+
+    draw1.ellipse((cx - ew / 2, cy - eh / 2, cx + ew / 2, cy + eh / 2), outline=1, fill=1)
+    draw2.ellipse((cx - cr, cy - cr, cx + cr, cy + cr), outline=1, fill=1)
+
     # Display image.
-    disp.image(image)
-    disp.display()
+    disp1.image(image1)
+    disp2.image(image2)
+    disp1.display()
+    disp2.display()
     time.sleep(.1)
