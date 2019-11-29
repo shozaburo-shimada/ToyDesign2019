@@ -76,9 +76,7 @@ class DetectThread(threading.Thread):
             scaleFactor=1.1,
             minNeighbors=5,
             minSize=(20, 20),
-            #minNeighbors=3,
-            #minSize=(30, 30),
-            #flags=cv.CV_HAAR_SCALE_IMAGE
+            
         )
         self.faces[:] = detectedFaces
 
@@ -87,51 +85,47 @@ class DetectThread(threading.Thread):
 while True:
     _, img = capture.read()
     img = cv2.flip(img, -1)
-    img = cv2.resize(img, (320, 240))
+    #img = cv2.resize(img, (320, 240))
     if count == 30:
         thread = DetectThread(img, faces)
         thread.start()
         count = 0
     else:
         count += 1
+
     for (x, y, w, h) in faces:
         cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
+	
+        ## Clear Display
+        draw1.rectangle((0, 0, width1, height1), outline=0, fill=0)
+        draw2.rectangle((0, 0, width2, height2), outline=0, fill=0)
+        
+        ctr_x = x + float(w/2)
+        ctr_y = y + float(h/2)
+        ratio_x = ctr_x / 640
+        ratio_y = ctr_y / 480
+        target_cx = 128 - (128 * ratio_x)
+        target_cy = 64 * ratio_y
+
+        print("tx: " + str(target_cx) + ", ty: " + str(target_cy) + ", cx: " + str(ctr_x) + ", cy: " + str(ctr_y))
+
+        ew = 50 / 2
+        eh = 70 / 2
+
+        ## Draw Eyes
+        draw1.ellipse((target_cx - ew, target_cy - eh, target_cx + ew, target_cy + eh), outline=1, fill=1)
+        draw2.ellipse((target_cx - ew, target_cy - eh, target_cx + ew, target_cy + eh), outline=1, fill=1)
+
+        ## Display image
+        disp1.image(image1)
+        disp2.image(image2)
+        disp1.display()
+        disp2.display()
+
+        faces = []
+        break
 
     cv2.imshow("camera", img)
-
-    ## Clear Display
-    draw1.rectangle((0, 0, width1, height1), outline=0, fill=0)
-    draw2.rectangle((0, 0, width2, height2), outline=0, fill=0)
-
-    #Smoothing...?
-    if abs(cx - target_cx) > 5:
-      if cx > target_cx:
-        cx = cx - 5
-      elif cx < target_cx:
-        cx = cx + 5
-
-    if abs(cy - target_cy) > 5:
-      if cy > target_cy:
-        cy = cy - 5
-      elif cy < target_cy:
-        cy = cy + 5
-
-    print("tx: " + str(target_cx) + ", ty: " + str(target_cy) + ", cx: " + str(cx) + ", cy: " + str(cy))
-
-    ew = 50 / 2
-    eh = 70 / 2
-
-    #draw1.ellipse((cx - ew, cy - eh, cx + ew, cy + eh), outline=1, fill=1)
-    #draw2.ellipse((cx - ew, cy - eh, cx + ew, cy + eh), outline=1, fill=1)
-    draw1.ellipse((target_cx - ew, target_cy - eh, target_cx + ew, target_cy + eh), outline=1, fill=1)
-    draw2.ellipse((target_cx - ew, target_cy - eh, target_cx + ew, target_cy + eh), outline=1, fill=1)
-
-    ##Display image
-    disp1.image(image1)
-    disp2.image(image2)
-    disp1.display()
-    disp2.display()
-    #time.sleep(.1)
 
     ## Quit
     k =  cv2.waitKey(30) & 0xff
@@ -145,3 +139,8 @@ cv2.destroyAllWindows()
 # Clear Display 
 draw1.rectangle((0, 0, width1, height1), outline=0, fill=0)
 draw2.rectangle((0, 0, width2, height2), outline=0, fill=0)
+disp1.image(image1)
+disp2.image(image2)
+disp1.display()
+disp2.display()
+
