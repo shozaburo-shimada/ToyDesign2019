@@ -4,14 +4,14 @@ import sys
 
 print('start')
 
-ser = serial.Serial('/dev/ttyS0', 9600)
+ser = serial.Serial('/dev/ttyS0', 250000)
 
-ser.write("hello")
+#ser.write("hello")
 
 try:
   while True:
     c = ser.read()
-    print(c)
+    print(ord(c))
 
 except KeyboardInterrupt:
   ser.close()
