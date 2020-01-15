@@ -1,6 +1,8 @@
+
 # -*- coding:utf-8 -*-
 import socket
-import time 
+import time
+import pygame.mixer 
 
 
 host = 'localhost'
@@ -20,7 +22,23 @@ def response(keyword):
 
   if keyword == 'さようなら':
     print('バイバイ〜')
+  if keyword == 'いただきます':
+    print('めしあがれ')
 
+  if keyword == 'ごちそうさま':
+    print('ごちそうさま')
+
+  if keyword == '疲れた':
+    print('がんばって')
+    pygame.mixer.music.load('music.mp3')
+    pygame.mixer.music.play(1) 
+
+    time.sleep(10)
+    pygame.mixer.music.stop()
+
+
+# init mp3
+pygame.mixer.init()
 
 
 # Communicate with julios module
