@@ -23,17 +23,17 @@ RST = None     # on the PiOLED this pin isnt used
  
 ## Note you can change the I2C address by passing an i2c_address parameter like:
 disp1 = Adafruit_SSD1306.SSD1306_128_64(rst=RST, i2c_address=0x3C)
-disp2 = Adafruit_SSD1306.SSD1306_128_64(rst=RST, i2c_address=0x3D)
+#disp2 = Adafruit_SSD1306.SSD1306_128_64(rst=RST, i2c_address=0x3D)
 
 ## Initialize library.
 disp1.begin()
-disp2.begin()
+#disp2.begin()
 
 ## Clear display.
 disp1.clear()
-disp2.clear()
+#disp2.clear()
 disp1.display()
-disp2.display()
+#disp2.display()
 
 ## Create blank image for drawing.
 ## Make sure to create image with mode '1' for 1-bit color.
@@ -41,17 +41,17 @@ width1 = disp1.width
 height1 = disp1.height
 image1 = Image.new('1', (width1, height1))
 
-width2 = disp2.width
-height2 = disp2.height
-image2 = Image.new('1', (width2, height2))
+#width2 = disp2.width
+#height2 = disp2.height
+#image2 = Image.new('1', (width2, height2))
 
 ## Get drawing object to draw on image.
 draw1 = ImageDraw.Draw(image1)
-draw2 = ImageDraw.Draw(image2)
+#draw2 = ImageDraw.Draw(image2)
 
 ## Draw a black filled box to clear the image.
-draw1.rectangle((0,0,width1,height2), outline=0, fill=0)
-draw2.rectangle((0,0,width2,height2),outline=0, fill=0)
+draw1.rectangle((0,0,width1,height1), outline=0, fill=0)
+#draw2.rectangle((0,0,width2,height2),outline=0, fill=0)
 
 ratio_x = 0.5
 ratio_y = 0.5
@@ -87,7 +87,7 @@ while True:
 
     ## Clear Display
     draw1.rectangle((0, 0, width1, height1), outline=0, fill=0)
-    draw2.rectangle((0, 0, width2, height2), outline=0, fill=0)
+#    draw2.rectangle((0, 0, width2, height2), outline=0, fill=0)
 
     #Smoothing...?
     if abs(cx - target_cx) > 5:
@@ -110,13 +110,13 @@ while True:
     #draw1.ellipse((cx - ew, cy - eh, cx + ew, cy + eh), outline=1, fill=1)
     #draw2.ellipse((cx - ew, cy - eh, cx + ew, cy + eh), outline=1, fill=1)
     draw1.ellipse((target_cx - ew, target_cy - eh, target_cx + ew, target_cy + eh), outline=1, fill=1)
-    draw2.ellipse((target_cx - ew, target_cy - eh, target_cx + ew, target_cy + eh), outline=1, fill=1)
+ #   draw2.ellipse((target_cx - ew, target_cy - eh, target_cx + ew, target_cy + eh), outline=1, fill=1)
 
     ##Display image
     disp1.image(image1)
-    disp2.image(image2)
+  #  disp2.image(image2)
     disp1.display()
-    disp2.display()
+  #  disp2.display()
     #time.sleep(.1)
 
     ##Quit

@@ -1,12 +1,26 @@
-% BENKYOUSURU 
-勉強する b e N ky o u s u r u
-% ITADAKIMASU
-いただきます i t a d a k i m a s u
-% GOCHISOUSAMA
-ごちそうさま g o ch i s o u s a m a
-% TSUKARETA
-疲れた ts u k a r e t a
-% NS_B
+%BENKYOUSURU
+勉強する	b e N ky o u s u r u
+%ITADAKIMASU
+いただきます	i t a d a k i m a s u
+%GOCHISOUSAMA
+ごちそうさま	g o ch i s o u s a m a
+%TSUKARETA
+疲れた	ts u k a r e t a
+%NEMUI
+眠い	n e m u i
+%ONAKASUITA
+お腹空いた	o n a k a s u i t a
+%KONOMONDAIMUZUKASHII
+この問題難しい	k o n o m o N d a i m u z u k a sh i i
+%IMAKARABENKYOUSURUNE
+今から勉強するね	i m a k a r a b e N ky o u s u r u n e
+%BENKYOUOWAQTAYO
+勉強終わったよ	b e N ky o u o w a q t a y o
+%OHAYOU
+おはよう	o h a y o u
+%OYASUMI
+おやすみ	o y a s u m i
+%NS_B
 [s] silB
-% NS_E
+%NS_E
 [/s] silE

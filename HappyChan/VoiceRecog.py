@@ -11,27 +11,64 @@ port = 10500
 
 # Response
 def response(keyword):
-  if keyword == 'おはよう':
-    print('おはようございます')
+  #print(keyword)
+　if keyword == '勉強する':
+    print('勉強する')
+    pygame.mixer.music.load('furefure.mp3')
+    pygame.mixer.music.play(1) 
 
-  if keyword == 'こんにちわ':
-    print('こんにちわ、いい天気ですね')
-
-  if keyword == 'ありがとう':
-    print('どういたしまして')
-
-  if keyword == 'さようなら':
-    print('バイバイ〜')
-  if keyword == 'いただきます':
+　if keyword == 'いただきます':
     print('めしあがれ')
+  #  pygame.mixer.music.load('info-girl1-ganbattane1.mp3')
+  #  pygame.mixer.music.play(1) 
 
   if keyword == 'ごちそうさま':
     print('ごちそうさま')
-
-  if keyword == '疲れた':
-    print('がんばって')
-    pygame.mixer.music.load('music.mp3')
+    pygame.mixer.music.load('gochisousama.mp3')
     pygame.mixer.music.play(1) 
+
+　if keyword == '疲れた':
+    print('がんばって')
+    pygame.mixer.music.load('info-girl1-ganbattane1.mp3')
+    pygame.mixer.music.play(1) 
+
+　if keyword == '眠い'
+    print('起きろ')
+  #  pygame.mixer.music.load('info-girl1-ganbattane1.mp3')
+  #  pygame.mixer.music.play(1) 
+
+　if keyword == 'お腹空いた':
+     print('何が食べたい？')
+  #  pygame.mixer.music.load('info-girl1-ganbattane1.mp3')
+  #  pygame.mixer.music.play(1) 
+ 
+
+　if keyword == 'この問題難しい':
+    print('がんばって')
+    pygame.mixer.music.load('info-girl1-ganbattane1.mp3')
+    pygame.mixer.music.play(1) 
+
+　if keyword == '今から勉強するね':
+    print('がんばって')
+    pygame.mixer.music.load('furefure.mp3')
+    pygame.mixer.music.play(1) 
+
+　if keyword == '勉強終わったよ':
+    print('おつかれさま')
+    pygame.mixer.music.load('yatta.mp3')
+    pygame.mixer.music.play(1)
+
+　if keyword == 'おはよう':
+    print('おはよう')
+    pygame.mixer.music.load('ohayou.mp3')
+    pygame.mixer.music.play(1) 
+ 
+　if keyword == 'おやすみ':
+    print('また明日ね')
+    pygame.mixer.music.load('mataashita.mp3')
+    pygame.mixer.music.play(1) 
+
+
 
     time.sleep(10)
     pygame.mixer.music.stop()
@@ -65,7 +102,7 @@ while True:
         word = word + line
 
     #print(word)
-    
+
     # Response for keyword
     response(word)
 
