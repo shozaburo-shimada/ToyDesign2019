@@ -3,7 +3,7 @@
 import socket
 import time
 #import pygame.mixer
-
+import RPI.GPIO as GPIO
 
 host = 'localhost'
 port = 10500
@@ -75,6 +75,11 @@ def response(keyword):
 
 # init mp3
 #pygame.mixer.init()
+
+# init servo
+# GPIO.setmode(xxx)
+# gp_out -- xxx.start() made
+# bat, mid, top
 
 # Communicate with julios module
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
