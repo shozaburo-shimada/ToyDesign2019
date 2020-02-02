@@ -1,4 +1,4 @@
-
+# -*- coding: utf-8 -*-
 
 import sys
 import time
@@ -30,10 +30,10 @@ while True:
             print('last: {:012b}'.format(last_touched))
 
             print('{0} touched!\n'.format(i))
-            if i == 0:
+            #if i == 0:
                 # 0番目がタッチされた
                 # movie0.mp4を再生
-            if i == 1:
+            #if i == 1:
                 # 2番目がタッチされた
                 # movie1.mp4を再生
 
