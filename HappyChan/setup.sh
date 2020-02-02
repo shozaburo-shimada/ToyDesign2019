@@ -19,3 +19,5 @@ cd bluez-5.45
 make -j4
 sudo make install
 sudo pip install pybluez
+
+sudo pip install pybleno

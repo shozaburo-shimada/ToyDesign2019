@@ -9,5 +9,5 @@ cat /proc/asound/modules
 #julius -C ~/Documents/ToyDesign2019/HappyChan/julius/julius-kit/dictation-kit-v4.4/am-gmm.jconf -nostrip -gram ~/Documents/ToyDesign2019/HappyChan/julius/dict/hello -input mic -module
 julius -C ~/Documents/ToyDesign2019/HappyChan/julius/julius-kit/dictation-kit-v4.4/am-gmm.jconf -nostrip -gram ~/Documents/ToyDesign2019/HappyChan/julius/dict/happy -input mic -module &
 
-python VoiceRecog.py
+#python VoiceRecog.py
 
