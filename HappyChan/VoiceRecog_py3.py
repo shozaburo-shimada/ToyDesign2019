@@ -14,65 +14,46 @@ def response(keyword):
   #print(keyword)
   if keyword == '勉強する':
     print('勉強する')
-  #  pygame.mixer.music.load('furefure.mp3')
-  #  pygame.mixer.music.play(1) 
   
-  if keyword == 'いただきます':
+  elif keyword == 'いただきます':
     print('めしあがれ')
-  #  pygame.mixer.music.load('info-girl1-ganbattane1.mp3')
-  #  pygame.mixer.music.play(1) 
 
-  if keyword == 'ごちそうさま':
+  elif keyword == 'ごちそうさま':
     print('ごちそうさま')
-  #  pygame.mixer.music.load('gochisousama.mp3')
-  #  pygame.mixer.music.play(1) 
 
-  if keyword == '疲れた':
+  elif keyword == '疲れた':
     print('がんばって')
-  #  pygame.mixer.music.load('info-girl1-ganbattane1.mp3')
-  #  pygame.mixer.music.play(1) 
 
-  if keyword == '眠い':
+  elif keyword == '眠い':
     print('起きろ')
-  #  pygame.mixer.music.load('info-girl1-ganbattane1.mp3')
-  #  pygame.mixer.music.play(1) 
 
-  if keyword == 'お腹空いた':
-     print('何が食べたい？')
-  #  pygame.mixer.music.load('info-girl1-ganbattane1.mp3')
-  #  pygame.mixer.music.play(1) 
- 
+  elif keyword == 'お腹空いた':
+     print('何が食べたい？') 
 
-  if keyword == 'この問題難しい':
+  elif keyword == 'この問題難しい':
     print('がんばって')
-  #  pygame.mixer.music.load('info-girl1-ganbattane1.mp3')
-  #  pygame.mixer.music.play(1) 
 
-  if keyword == '今から勉強するね':
+  elif keyword == '今から勉強するね':
     print('がんばって')
-  #  pygame.mixer.music.load('furefure.mp3')
-  #  pygame.mixer.music.play(1) 
 
-  if keyword == '勉強終わったよ':
+  elif keyword == '勉強終わったよ':
     print('おつかれさま')
-  #  pygame.mixer.music.load('yatta.mp3')
-  #  pygame.mixer.music.play(1)
 
-  if keyword == 'おはよう':
+  elif keyword == 'おはよう':
     print('おはよう')
-  #  pygame.mixer.music.load('ohayou.mp3')
-  #  pygame.mixer.music.play(1) 
  
   if keyword == 'おやすみ':
     print('また明日ね')
-  #  pygame.mixer.music.load('mataashita.mp3')
-  #  pygame.mixer.music.play(1) 
+ 
+def init_servo():
+  pass
 
-
-
-  #  time.sleep(10)
-  #  pygame.mixer.music.stop()
-
+def init_julius():
+  p = subprocess.Popen(["sh julius.sh"], stdout=subprocess.PIPE, shell=True)
+  pid = str(p.stdout.read().decode('utf-8'))
+  print("Julius PID: " + pid)
+  time.sleep(3)
+  return p, pid
 
 if __name__ == "__main__":
   # init mp3
@@ -84,10 +65,7 @@ if __name__ == "__main__":
   # bat, mid, top
 
   # init julius
-  p = subprocess.Popen(["sh julius.sh"], stdout=subprocess.PIPE, shell=True)
-  pid = str(p.stdout.read().decode('utf-8'))
-  print("Julius PID: " + pid)
-  time.sleep(3)  
+  p, pid = init_julius()  
 
   # Communicate with julios module
   sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -95,12 +73,14 @@ if __name__ == "__main__":
 
   res = ''
 
+  print("Start voice recognition")
   try:
     while True:
       # Waiting for the end of sentence(='\n.')
       while(res.find('\n.') == -1):
         # Store the data from julius
-        res += sock.recv(1024)
+        #res += sock.recv(1024)
+        res += str(sock.recv(1024).decode('utf-8'))
 
       word = ''
       for line in res.split('\n'):
@@ -121,10 +101,10 @@ if __name__ == "__main__":
         res = ''
 
   except KeyboardInterrupt:
-    print("p.kill()")
-    p.kill()
+    print("\n")
+    print("End voice recognition")
 
-    print("kill pid")
+    p.kill()
     subprocess.call(["kill " + pid], shell=True)
     sock.close()
 

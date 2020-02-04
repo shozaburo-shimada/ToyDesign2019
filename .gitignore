@@ -1,0 +1,7 @@
+*.save
+
+HappyChan/julius/julius-*
+HappyChan/*.save
+HappyChan/*.save.*
+HappyChan/log.txt
+HappyChan/__pycache__/
