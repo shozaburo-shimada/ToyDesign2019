@@ -5,10 +5,11 @@ import time
 import subprocess
 import Adafruit_MPR121.MPR121 as MPR121
 import pygame
-
+import serial
 
 cap = MPR121.MPR121()
 pygame.mixer.init()
+ser = serial.Serial('/dev/ttyS0',250000)
 
 if not cap.begin():
     print('Error initializing MPR121.  Check your wiring!')
@@ -21,7 +22,12 @@ flag_video1 = False
 flag_video2 = False
 flag_video3 = False
 music_num = 3
+flag_music = False
+
 while True:
+   # c = ser.read()
+   # print(ord(c))
+   # time.sleep(1)
     current_touched = cap.touched()
 
     for i in range(12):
@@ -71,18 +77,33 @@ while True:
                 flag_video3 = True 
 
             if i == 4:
+              flag_music = True
               if music_num == 3:
                 pygame.mixer.music.load("music1.mp3")
-                pygame.mixer.music.play(1)
+                pygame.mixer.music.play(0)
                 music_num = 1
               elif music_num == 1:
                 pygame.mixer.music.load("music2.mp3")
-                pygame.mixer.music.play(1)
+                pygame.mixer.music.play(0)
                 music_num = 2
               elif music_num == 2:
                 pygame.mixer.music.load("music3.mp3")
-                pygame.mixer.music.play(1)
+                pygame.mixer.music.play(0)
                 music_num = 3
+
+            if i == 0:
+              if flag_video1 == True or flag_video2 == True or flag_video3 == True:
+                proc.stdin.write('q')
+                proc.stdin.flush()
+                flag_video1 = False              
+                flag_video2 = False
+                flag_video3 = False
+              if flag_music == True:
+                pygame.mixer.music.stop()
+                flag_music = False
+                music_num = music_num -1
+                if music_num == 0:
+                   music_num = 3
 
         # i番目のポートが、前回までタッチされていて、かつ今回タッチされていない = リリースを検出
 
