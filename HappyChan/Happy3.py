@@ -8,36 +8,6 @@ import subprocess
 
 import RPi.GPIO as GPIO
 import time
-GPIO.setmode(GPIO.BCM)
-
-gp_out = 2 
-#pin3
-GPIO.setup(gp_out,GPIO.OUT)
-mimi = GPIO.PWM(gp_out,50)
-mimi.start(0.0)
-
-gp_out = 3
-#pin5
-GPIO.setup(gp_out,GPIO.OUT)
-shippo = GPIO.PWM(gp_out,50)
-shippo.start(0.0)
-
-gp_out = 4 
-#pin7
-GPIO.setup(gp_out,GPIO.OUT)
-kubihuri = GPIO.PWM(gp_out,50)
-kubihuri.start(0.0)
-
-gp_out = 18 
-#pin12
-GPIO.setup(gp_out,GPIO.OUT)
-unazuki = GPIO.PWM(gp_out,50)
-unazuki.start(0.0)
-
-
-bot = 2.5 #0度
-mid = 7.2 #90度
-top = 12.0 #180度
 
 
 class ApproachCharacteristic(Characteristic):
@@ -182,6 +152,39 @@ counter = 0
 # Program start here
 if __name__ == "__main__":
   print("Start Happy-chan")  
+
+  # servo set
+  GPIO.setmode(GPIO.BCM)
+
+  gp_out = 2 
+  #pin3
+  GPIO.setup(gp_out,GPIO.OUT)
+  mimi = GPIO.PWM(gp_out,50)
+  mimi.start(0.0)
+
+  gp_out = 3
+  #pin5
+  GPIO.setup(gp_out,GPIO.OUT)
+  shippo = GPIO.PWM(gp_out,50)
+  shippo.start(0.0)
+
+  gp_out = 4 
+  #pin7
+  GPIO.setup(gp_out,GPIO.OUT)
+  kubihuri = GPIO.PWM(gp_out,50)
+  kubihuri.start(0.0)
+
+  gp_out = 18 
+  #pin12
+  GPIO.setup(gp_out,GPIO.OUT)
+  unazuki = GPIO.PWM(gp_out,50)
+  unazuki.start(0.0)
+
+
+  bot = 2.5 #0度
+  mid = 7.2 #90度
+  top = 12.0 #180度
+
 
   # Init BLE  
   approachCharacteristic = ApproachCharacteristic()
