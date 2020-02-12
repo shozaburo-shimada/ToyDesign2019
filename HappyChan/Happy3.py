@@ -89,6 +89,8 @@ def init_sock():
 
 # Response
 def response(keyword):
+  global cmd
+
   #print(keyword)
   if keyword == '勉強する':
     print('勉強する')
@@ -101,8 +103,11 @@ def response(keyword):
 
   elif keyword == '疲れた':
     print('がんばって')
-    mimi.ChangeDutyCycle(bot)
-    time.sleep(2)
+    cmd = 100
+    #mimi.ChangeDutyCycle(degreetoduty(30))
+    #time.sleep(100)
+    #mimi.changeDutyCycle(degreetoduty(30))
+    #time.sleep(100)
 
   elif keyword == '眠い':
     print('起きろ')
@@ -121,8 +126,9 @@ def response(keyword):
 
   elif keyword == 'おはよう':
     print('おはよう')
-    unazuki.ChangeDutyCycle(mid)
-    time.sleep(2)
+    cmd = 200
+    #unazuki.ChangeDutyCycle(degreetoduty(30))
+    #time.sleep(100)
 
   elif keyword == 'おやすみ':
     print('また明日ね')
@@ -130,9 +136,9 @@ def response(keyword):
 
 
 def notify_task():
-  global counter
+  global cmd
   #counter += 1
-  approachCharacteristic._value = counter
+  approachCharacteristic._value = cmd
   if approachCharacteristic._updateValueCallback:
 
     print('Sending notification with value : ' + str(approachCharacteristic._value))
@@ -140,19 +146,25 @@ def notify_task():
     notificationBytes = str(approachCharacteristic._value).encode()
     approachCharacteristic._updateValueCallback(notificationBytes)
 
+  cmd = 0
+
+def degreetoduty(degree):
+  duty = ((12-2.5)/180)*degree+2.5 
+  return duty
+
 # Global
 APPROACH_SERVICE_UUID = '13A28130-8883-49A8-8BDB-42BC1A7107F4'
 APPROACH_CHARACTERISTIC_UUID = 'A2935077-201F-44EB-82E8-10CC02AD8CE1'
 host = 'localhost'
 port = 10500
 
-counter = 0
-
+cmd = 0
 
 # Program start here
 if __name__ == "__main__":
   print("Start Happy-chan")  
 
+  """
   # servo set
   GPIO.setmode(GPIO.BCM)
 
@@ -181,10 +193,10 @@ if __name__ == "__main__":
   unazuki.start(0.0)
 
 
-  bot = 2.5 #0度
-  mid = 7.2 #90度
-  top = 12.0 #180度
-
+  #bot = 2.5 #0度
+  #mid = 7.2 #90度
+  #top = 12.0 #180度
+  """
 
   # Init BLE  
   approachCharacteristic = ApproachCharacteristic()
@@ -235,8 +247,9 @@ if __name__ == "__main__":
 
         res = ''
 
-      #BLE Notify 
-      notify_task() 
+      #BLE Notify
+      if cmd != 0:
+        notify_task() 
 
   except KeyboardInterrupt:
     print("\nEnd Happy-chan")
