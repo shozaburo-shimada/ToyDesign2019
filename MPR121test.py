@@ -25,9 +25,38 @@ music_num = 3
 flag_music = False
 
 while True:
-   # c = ser.read()
-   # print(ord(c))
-   # time.sleep(1)
+    try:
+      hr = ser.read()
+      hr = hr.decode()
+      hr = ord(hr)
+    except:
+      print("ofr")
+      hr = 150
+    print(hr)
+
+    if hr < 70:
+      if music_num != 1:
+        print("m1")
+        pygame.mixer.music.load("music1.mp3")
+        pygame.mixer.music.play(0)
+        music_num = 1
+    elif hr < 90 and hr >= 70:
+      if music_num != 2:
+        print("m2")
+        pygame.mixer.music.load("music2.mp3")
+        pygame.mixer.music.play(0)
+        music_num = 2
+    elif hr >= 90 and hr <= 110:
+      if music_num != 3:
+        print("m3")
+        pygame.mixer.music.load("music3.mp3")
+        pygame.mixer.music.play(0)
+        music_num = 3
+    else:
+      print("out of range")
+
+    #print(ord(hr))
+    time.sleep(1)
     current_touched = cap.touched()
 
     for i in range(12):
