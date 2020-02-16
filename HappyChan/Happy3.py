@@ -9,6 +9,9 @@ import subprocess
 import RPi.GPIO as GPIO
 import time
 
+import Adafruit_PCA9685
+import time
+
 
 class ApproachCharacteristic(Characteristic):
 
@@ -86,6 +89,19 @@ def init_sock():
   sock.connect((host, port))
   return sock
 
+class servo_Class:
+
+  def __init__(self, Channel, ZeroOffset):
+    self.Channel = Channel
+    self.ZeroOffset = ZeroOffset
+
+    self.pwm = Adafruit_PCA9685.PCA9685(address=0x40)
+    self.pwm.set_pwm_freq(60)
+
+  def SetPos(self, pos):
+    pulse = int((650 - 150) / 180 * pos) + 150 + self.ZeroOffset
+    self.pwm.set_pwm(self.Channel, 0, pulse)
+
 
 # Response
 def response(keyword):
@@ -94,45 +110,57 @@ def response(keyword):
   #print(keyword)
   if keyword == '勉強する':
     print('勉強する')
+    cmd = 600
  
   elif keyword == 'いただきます':
     print('めしあがれ')
+    cmd = 300
 
   elif keyword == 'ごちそうさま':
     print('ごちそうさま')
+    cmd = 400
+    unazuki.SetPos(45)
 
   elif keyword == '疲れた':
     print('がんばって')
     cmd = 100
-    #mimi.ChangeDutyCycle(degreetoduty(30))
-    #time.sleep(100)
-    #mimi.changeDutyCycle(degreetoduty(30))
-    #time.sleep(100)
+    mimi.SetPos(30)
 
   elif keyword == '眠い':
     print('起きろ')
+    cmd = 700
+    mimi.SetPos(30)
 
   elif keyword == 'お腹空いた':
-     print('何が食べたい？') 
+    print('何が食べたい？') 
+    cmd = 800
+    mimi.SetPos(30)
 
   elif keyword == 'この問題難しい':
     print('がんばって')
+    cmd = 500
+    kubihuri.SetPos(30)
+
 
   elif keyword == '今から勉強するね':
     print('がんばって')
+    cmd = 1100
+    mimi.SetPos(30)
 
   elif keyword == '勉強終わったよ':
     print('おつかれさま')
+    cmd = 1000
+    mimi.SetPos(30)
 
   elif keyword == 'おはよう':
     print('おはよう')
     cmd = 200
-    #unazuki.ChangeDutyCycle(degreetoduty(30))
-    #time.sleep(100)
+    mimi.SetPos(30)
 
   elif keyword == 'おやすみ':
     print('また明日ね')
-
+    cmd = 900
+    shippo.SetPos(30)
 
 
 def notify_task():
@@ -148,9 +176,9 @@ def notify_task():
 
   cmd = 0
 
-def degreetoduty(degree):
-  duty = ((12-2.5)/180)*degree+2.5 
-  return duty
+#def degreetoduty(degree):
+#  duty = ((12-2.5)/180)*degree+2.5 
+#  return duty
 
 # Global
 APPROACH_SERVICE_UUID = '13A28130-8883-49A8-8BDB-42BC1A7107F4'
@@ -163,6 +191,44 @@ cmd = 0
 # Program start here
 if __name__ == "__main__":
   print("Start Happy-chan")  
+
+if __name__ == '__main__':
+  unazuki = servo_Class(Channel=0, ZeroOffset=-5)
+  kubihuri = servo_Class(Channel=1, ZeroOffset=-5)
+  mimi = servo_Class(Channel=2, ZeroOffset=-5)
+  shippo = servo_Class(Channel=3, ZeroOffset=-5)
+
+  unazuki.SetPos(0)
+  kubihuri.SetPos(0)
+  mimi.SetPos(0)
+  shippo.SetPos(0)
+
+#  try:
+#    while True:
+#      print("45")
+#      servo0.SetPos(45)
+#      time.sleep(2)
+#      servo1.SetPos(45)
+#      time.sleep(2)
+#      servo2.SetPos(45)
+#      time.sleep(2)      
+#      servo3.SetPos(45)
+#      time.sleep(2)
+
+#      print("90")
+#      servo0.SetPos(90)
+#      time.sleep(2)
+#      servo1.SetPos(90)
+#      time.sleep(2)
+#      servo2.SetPos(90)
+#      time.sleep(2)
+#      servo3.SetPos(90)
+#      time.sleep(2)
+
+#  except KeyboardInterrupt:
+#    print("End PCM9685 test")
+
+
 
   """
   # servo set
