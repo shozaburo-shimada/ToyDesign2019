@@ -78,7 +78,7 @@ def init_servo():
   pass
 
 def init_julius():
-  p = subprocess.Popen(["sh julius.sh"], stdout=subprocess.PIPE, shell=True)
+  p = subprocess.Popen(["sh /home/pi/Documents/ToyDesign2019/HappyChan/julius.sh"], stdout=subprocess.PIPE, shell=True)
   pid = str(p.stdout.read().decode('utf-8'))
   print("Julius PID: " + pid)
   time.sleep(3)
@@ -108,59 +108,128 @@ def response(keyword):
   global cmd
 
   #print(keyword)
-  if keyword == '勉強する':
-    print('勉強する')
-    cmd = 600
- 
-  elif keyword == 'いただきます':
-    print('めしあがれ')
-    cmd = 300
-
-  elif keyword == 'ごちそうさま':
-    print('ごちそうさま')
-    cmd = 400
-    unazuki.SetPos(45)
-
-  elif keyword == '疲れた':
-    print('がんばって')
+  if keyword == '疲れた':
+    print('勉強終わったら遊べるぞ！')
     cmd = 100
-    mimi.SetPos(30)
+    unazuki.SetPos(15)
+    kubihuri.SetPos(30)
 
   elif keyword == '眠い':
-    print('起きろ')
-    cmd = 700
-    mimi.SetPos(30)
+    print('起きろ！')
+    cmd = 110
+    unazuki.SetPos(15)
+    kubihuri.SetPos(30)
 
-  elif keyword == 'お腹空いた':
-    print('何が食べたい？') 
-    cmd = 800
-    mimi.SetPos(30)
+  elif keyword == '終わりにしたい':
+    print('終わったら自由だぞ！')
+    cmd = 120
+    kubihuri.SetPos(15)
+    shippo.SetPos(30)
+
+  elif keyword == '遊びたい':
+    print('終わるまでだめだ！')
+    cmd = 130
+    kubihuri.SetPos(15)
+    sippo.SetPos(30)
 
   elif keyword == 'この問題難しい':
     print('がんばって')
-    cmd = 500
+    cmd = 140
     kubihuri.SetPos(30)
+    shippo.SetPos(30)
 
-
-  elif keyword == '今から勉強するね':
-    print('がんばって')
-    cmd = 1100
-    mimi.SetPos(30)
-
-  elif keyword == '勉強終わったよ':
-    print('おつかれさま')
-    cmd = 1000
-    mimi.SetPos(30)
+  elif keyword == '電源オン':
+    print('なにかするの？')
+    cmd = 10
+    unazuki.SetPos(15)
 
   elif keyword == 'おはよう':
     print('おはよう')
     cmd = 200
+
+  elif keyword == '勉強する':
+    print('時間はかろうか？')
+    cmd = 300
+
+  elif keyword == '今から勉強するね':
+    print('がんばって')
+    cmd = 310
+
+  elif keyword == 'がんばるね':
+    print('がんばって')
+    cmd = 400
     mimi.SetPos(30)
+    unazuki.SetPos(30)
+
+  elif keyword == 'あと何分':
+    print('弱音を吐くな！')
+    cmd = 500
+    mimi.SetPos(30)
+    unazuki.SetPos(30)
+
+  elif keyword == '終わった':
+    print('やったー')
+    cmd = 600
+    mimi.SetPos(30)
+    unazuki.SetPos(15)
+    shippo.SetPos(30)
+
+  elif keyword == '終わり':
+    print('おめでとう！遊ぼう')
+    cmd = 610
+    mimi.SetPos(30)
+    unazuki.SetPos(15)
+    shippo.SetPos(30)
+
+  elif keyword == 'フィニッシュ':
+    print('グッジョブ！！')
+    cmd = 620
+    mimi.SetPos(30)
+    unazuki.SetPos(15)
+    shippo.SetPos(30)
+
+  elif keyword == 'できた':
+    print('やったー！')
+    cmd = 630
+    mimi.SetPos(30)
+    unazuki.SetPos(15)
+    shippo.SetPos(30)
+
+  elif keyword == '勉強終わったよ':
+    print('おつかれさま')
+    cmd = 640
+    mimi.SetPos(30)
+    unazuki.SetPos(15)
+    shippo.SetPos(30)
+
+  elif keyword == 'よし':
+    print('どうしたの？')
+    cmd = 700
+    kubihuri.SetPos(30)
+
+  elif keyword == 'なんでもない':
+    print('そっか')
+    cmd = 710
+    kubihuri.SetPos(30)
 
   elif keyword == 'おやすみ':
     print('また明日ね')
-    cmd = 900
+    cmd = 1000
     shippo.SetPos(30)
+
+  elif keyword == 'いただきます':
+    print('めしあがれ')
+    cmd = 1100
+
+  elif keyword == 'ごちそうさま':
+    print('ごちそうさま')
+    cmd = 1110
+    unazuki.SetPos(45)
+
+  elif keyword == 'お腹空いた':
+    print('何が食べたい？') 
+    cmd = 1120
+    mimi.SetPos(30) 
 
 
 def notify_task():
