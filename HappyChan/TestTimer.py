@@ -99,7 +99,10 @@ class servo_Class:
     self.pwm.set_pwm_freq(60)
 
   def SetPos(self, pos):
-    pulse = int((650 - 150) / 180 * pos) + 150 + self.ZeroOffset
+    #pos:  -90 ~ 90
+    pos = pos + 90
+    #pos: 0 ~ 180
+    pulse = int((650 - 150) / 180 * pos) + 150 + self.ZeroOffset    
     self.pwm.set_pwm(self.Channel, 0, pulse)
 
 
@@ -156,6 +159,13 @@ def response(keyword):
     elif keyword == 'おはよう':
       print('おはよう')
       cmd = 200
+#以下テスト
+      unazuki.SetPos(15)
+      time.sleep(0.5)
+      unazuki.SetPos(0)
+      time.sleep(0.5)
+      unazuki.SetPos(15)
+
 
     elif keyword == '今から勉強するね':
       print('がんばって')

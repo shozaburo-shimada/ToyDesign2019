@@ -25,6 +25,7 @@ class servo_Class:
     self.pwm.set_pwm_freq(60)
 
   def SetPos(self, pos):
+    pos = pos + 90
     pulse = int((650 - 150) / 180 * pos) + 150 + self.ZeroOffset
     self.pwm.set_pwm(self.Channel, 0, pulse)
 
