@@ -34,9 +34,9 @@ if __name__ == "__main__":
 
 if __name__ == '__main__':
   unazuki = servo_Class(Channel=0, ZeroOffset=-5)
-  kubihuri = servo_Class(Channel=1, ZeroOffset=-5)
-  mimi = servo_Class(Channel=2, ZeroOffset=-5)
-  shippo = servo_Class(Channel=3, ZeroOffset=-5)
+  kubihuri = servo_Class(Channel=2, ZeroOffset=-5)
+  mimi = servo_Class(Channel=3, ZeroOffset=-5)
+  shippo = servo_Class(Channel=8, ZeroOffset=-5)
 
   unazuki.SetPos(0)
   kubihuri.SetPos(0)
@@ -52,21 +52,29 @@ if __name__ == '__main__':
        print(inputString)
        servoType = inputString.split()
        print(servoType)
-       if servoType[0] == 'a':
-          print("ちゃんとaって打てたねえらーい")
-          print(int(servoType[1]))
+       if servoType[0] == 'u':
+          print("くびたてサーボ")
+#          print("ちゃんとaって打てたねえらーい")
+#          print(int(servoType[1]))
           unazuki.SetPos(int(servoType[1]))
+# u174までできる
 #          print(int((650 - 150) / 180 * servoType[1]) + 150 + self.ZeroOffset)
 
-       elif servoType[0] == 'b':
-          print("aじゃねーじゃん")
+       elif servoType[0] == 'k':
+#          print("aじゃねーじゃん")
+          print("くびよこサーボ")
           kubihuri.SetPos(int(servoType[1]))
 
-       elif servoType[0] == 'c':
+       elif servoType[0] == 'm':
+          print("みみサーボ")
           mimi.SetPos(int(servoType[1]))
 
-       elif servoType[0] == 'd':
+       elif servoType[0] == 's':
+          print("しっぽサーボ")
           shippo.SetPos(int(servoType[1]))
+
+       else:
+          print("わからん")
 
   except KeyboardInterrupt:
     print("\nEnd Happy-chan")
