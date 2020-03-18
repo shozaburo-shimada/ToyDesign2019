@@ -99,6 +99,7 @@ class servo_Class:
     self.pwm.set_pwm_freq(60)
 
   def SetPos(self, pos):
+    pos = pos + 90
     pulse = int((650 - 150) / 180 * pos) + 150 + self.ZeroOffset
     self.pwm.set_pwm(self.Channel, 0, pulse)
 
@@ -106,131 +107,178 @@ class servo_Class:
 # Response
 def response(keyword):
   global cmd
+  global flagstate
+  global starttime 
+  global settimer
 
-  #print(keyword)
-  if keyword == '疲れた':
-    print('勉強終わったら遊べるぞ！')
-    cmd = 100
-    unazuki.SetPos(15)
-    kubihuri.SetPos(30)
+  print(keyword)
+  if flagstate == 0:
 
-  elif keyword == '眠い':
-    print('起きろ！')
-    cmd = 110
-    unazuki.SetPos(15)
-    kubihuri.SetPos(30)
+    if keyword == '疲れた':
+      print('勉強終わったら遊べるぞ！')
+      cmd = 100
+      unazuki.SetPos(15)
+      kubihuri.SetPos(30)
 
-  elif keyword == '終わりにしたい':
-    print('終わったら自由だぞ！')
-    cmd = 120
-    kubihuri.SetPos(15)
-    shippo.SetPos(30)
+    elif keyword == '眠い':
+      print('起きろ！')
+      cmd = 110
+      unazuki.SetPos(15)
+      kubihuri.SetPos(30)
 
-  elif keyword == '遊びたい':
-    print('終わるまでだめだ！')
-    cmd = 130
-    kubihuri.SetPos(15)
-    sippo.SetPos(30)
+    elif keyword == '終わりにしたい':
+      print('終わったら自由だぞ！')
+      cmd = 120
+      kubihuri.SetPos(15)
+      shippo.SetPos(30)
 
-  elif keyword == 'この問題難しい':
-    print('がんばって')
-    cmd = 140
-    kubihuri.SetPos(30)
-    shippo.SetPos(30)
+    elif keyword == '遊びたい':
+      print('終わるまでだめだ！')
+      cmd = 130
+      kubihuri.SetPos(15)
+      sippo.SetPos(30)
 
-  elif keyword == '電源オン':
-    print('なにかするの？')
-    cmd = 10
-    unazuki.SetPos(15)
+    elif keyword == 'この問題難しい':
+      print('がんばって')
+      cmd = 140
+      kubihuri.SetPos(30)
+      shippo.SetPos(30)
 
-  elif keyword == 'おはよう':
-    print('おはよう')
-    cmd = 200
+    elif keyword == '電源オン':
+      print('なにかするの？')
+      cmd = 10
+      unazuki.SetPos(15)
 
-  elif keyword == '勉強する':
-    print('時間はかろうか？')
-    cmd = 300
+    elif keyword == 'おはよう':
+      print('おはよう')
+      cmd = 200
 
-  elif keyword == '今から勉強するね':
-    print('がんばって')
-    cmd = 310
+    elif keyword == '勉強する':
+      print('時間はかろうか？')
+      cmd = 300
 
-  elif keyword == 'がんばるね':
-    print('がんばって')
-    cmd = 400
-    mimi.SetPos(30)
-    unazuki.SetPos(30)
+    elif keyword == '今から勉強するね':
+      print('がんばって')
+      cmd = 310
 
-  elif keyword == 'あと何分':
-    print('弱音を吐くな！')
-    cmd = 500
-    mimi.SetPos(30)
-    unazuki.SetPos(30)
+    elif keyword == 'がんばるね':
+      print('がんばって')
+      cmd = 400
+      mimi.SetPos(30)
+      unazuki.SetPos(30)
 
-  elif keyword == '終わった':
-    print('やったー')
-    cmd = 600
-    mimi.SetPos(30)
-    unazuki.SetPos(15)
-    shippo.SetPos(30)
+    elif keyword == 'あと何分':
+      print('弱音を吐くな！')
+      cmd = 500
+      mimi.SetPos(30)
+      unazuki.SetPos(30)
 
-  elif keyword == '終わり':
-    print('おめでとう！遊ぼう')
-    cmd = 610
-    mimi.SetPos(30)
-    unazuki.SetPos(15)
-    shippo.SetPos(30)
+    elif keyword == '終わった':
+      print('やったー')
+      cmd = 600
+      mimi.SetPos(30)
+      unazuki.SetPos(15)
+      shippo.SetPos(30)
 
-  elif keyword == 'フィニッシュ':
-    print('グッジョブ！！')
-    cmd = 620
-    mimi.SetPos(30)
-    unazuki.SetPos(15)
-    shippo.SetPos(30)
+    elif keyword == '終わり':
+      print('おめでとう！遊ぼう')
+      cmd = 610
+      mimi.SetPos(30)
+      unazuki.SetPos(15)
+      shippo.SetPos(30)
 
-  elif keyword == 'できた':
-    print('やったー！')
-    cmd = 630
-    mimi.SetPos(30)
-    unazuki.SetPos(15)
-    shippo.SetPos(30)
+    elif keyword == 'フィニッシュ':
+      print('グッジョブ！！')
+      cmd = 620
+      mimi.SetPos(30)
+      unazuki.SetPos(15)
+      shippo.SetPos(30)
 
-  elif keyword == '勉強終わったよ':
-    print('おつかれさま')
-    cmd = 640
-    mimi.SetPos(30)
-    unazuki.SetPos(15)
-    shippo.SetPos(30)
+    elif keyword == 'できた':
+      print('やったー！')
+      cmd = 630
+      mimi.SetPos(30)
+      unazuki.SetPos(15)
+      shippo.SetPos(30)
 
-  elif keyword == 'よし':
-    print('どうしたの？')
-    cmd = 700
-    kubihuri.SetPos(30)
+    elif keyword == '勉強終わったよ':
+      print('おつかれさま')
+      cmd = 640
+      mimi.SetPos(30)
+      unazuki.SetPos(15)
+      shippo.SetPos(30)
 
-  elif keyword == 'なんでもない':
-    print('そっか')
-    cmd = 710
-    kubihuri.SetPos(30)
+    elif keyword == 'よし':
+      print('どうしたの？')
+      cmd = 700
+      kubihuri.SetPos(30)
 
-  elif keyword == 'おやすみ':
-    print('また明日ね')
-    cmd = 1000
-    shippo.SetPos(30)
+    elif keyword == 'なんでもない':
+      print('そっか')
+      cmd = 710
+      kubihuri.SetPos(30)
 
-  elif keyword == 'いただきます':
-    print('めしあがれ')
-    cmd = 1100
+    elif keyword == 'おやすみ':
+      print('また明日ね')
+      cmd = 1000
+      shippo.SetPos(30)
 
-  elif keyword == 'ごちそうさま':
-    print('ごちそうさま')
-    cmd = 1110
-    unazuki.SetPos(45)
+    elif keyword == 'いただきます':
+      print('めしあがれ')
+      cmd = 1100
 
-  elif keyword == 'お腹空いた':
-    print('何が食べたい？') 
-    cmd = 1120
-    mimi.SetPos(30) 
+    elif keyword == 'ごちそうさま':
+      print('ごちそうさま')
+      cmd = 1110
+      unazuki.SetPos(45)
 
+    elif keyword == 'お腹空いた':
+      print('何が食べたい？') 
+      cmd = 1120
+      mimi.SetPos(30) 
+
+    elif keyword == '勉強する':
+      print('時間はかろうか？')
+      cmd = 300
+
+    elif keyword == '勉強する':
+      print('時間はかろうか？')
+      cmd = 300
+      flagstate = 1
+
+#時間はかるモードに変える
+  if flagstate == 1:
+
+    if keyword == 'にじゅっぷん':
+      print('にじゅぷんはかるよ')
+      cmd = 20
+#現在の時間を取得
+      starttime = time.time()
+      settimer = 20
+      cmd = 77
+#音声認識モードに戻す
+      flagstate = 0
+
+    elif keyword == 'さんじゅっぷん':
+      cmd = 30
+      startime = time.time()
+      settimer = 30
+      cmd = 77
+      flagstate = 0
+
+    elif keyword == 'よんじゅうごふん':
+      cmd = 45
+      starttime = time.time()
+      settimer = 45
+      cmd = 77
+      flagstate = 0
+
+    elif keyword == 'ろくじゅぷん':
+      cmd = 60
+      starttime = time.time()
+      settimer = 60 
+      cmd = 77
+      flagstate = 0
 
 def notify_task():
   global cmd
@@ -256,12 +304,14 @@ host = 'localhost'
 port = 10500
 
 cmd = 0
+flagstate = 0
+starttime = 0
+settimer = 0
 
 # Program start here
 if __name__ == "__main__":
   print("Start Happy-chan")  
 
-if __name__ == '__main__':
   unazuki = servo_Class(Channel=0, ZeroOffset=-5)
   kubihuri = servo_Class(Channel=1, ZeroOffset=-5)
   mimi = servo_Class(Channel=2, ZeroOffset=-5)
@@ -280,7 +330,7 @@ if __name__ == '__main__':
 #      servo1.SetPos(45)
 #      time.sleep(2)
 #      servo2.SetPos(45)
-#      time.sleep(2)      
+#      time.sleep(2)
 #      servo3.SetPos(45)
 #      time.sleep(2)
 
@@ -385,6 +435,12 @@ if __name__ == '__main__':
       #BLE Notify
       if cmd != 0:
         notify_task() 
+
+      #Timer
+      if time.time() - starttime > settimer * 60 and starttime != 0:
+        print('経過したよ')
+        starttime = 0
+        settimer = 0
 
   except KeyboardInterrupt:
     print("\nEnd Happy-chan")

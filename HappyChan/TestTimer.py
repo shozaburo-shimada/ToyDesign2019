@@ -253,10 +253,11 @@ def response(keyword):
 #時間はかるモードに変える
   if flagstate == 1:
 
-    if keyword == 'おはよう':
-      print('こんにちは')
+  #  if keyword == 'おはよう':
+  #    print('こんにちは')
 
     if keyword == 'にじゅっぷん':
+      print('にじゅぷんはかるよ')
       cmd = 20
 #現在の時間を取得
       starttime = time.time()
