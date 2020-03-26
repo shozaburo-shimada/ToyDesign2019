@@ -119,35 +119,82 @@ def response(keyword):
       cmd = 100
       unazuki.SetPos(15)
       kubihuri.SetPos(30)
+      time.sleep(0.5)
+      unazuki.SetPos(0)
+      kubihuri.SetPos(0)
+      time.sleep(0.5) 
+      kubihuri.SetPos(-30)
+      time.sleep(0.5)
+      kubihuri.SetPos(0)
 
     elif keyword == '眠い':
       print('起きろ！')
       cmd = 110
       unazuki.SetPos(15)
       kubihuri.SetPos(30)
+      time.sleep(0.5)
+      unazuki.SetPos(0)
+      kubihuri.SetPos(0)
+      time.sleep(0.5) 
+      kubihuri.SetPos(-30)
+      time.sleep(0.5)
+      kubihuri.SetPos(0)
 
     elif keyword == '終わりにしたい':
       print('終わったら自由だぞ！')
       cmd = 120
-      kubihuri.SetPos(15)
       shippo.SetPos(30)
+      kubihuri.SetPos(15)
+      time.sleep(0.5)
+      shippo.SetPos(0)
+      kubihuri.SetPos(0)
+      time.sleep(0.5)
+      shippo.SetPos(-30) 
+      kubihuri.SetPos(-15)
+      time.sleep(0.5)
+      shippo.SetPos(0)
+      kubihuri.SetPos(0)
 
     elif keyword == '遊びたい':
       print('終わるまでだめだ！')
       cmd = 130
+      shippo.SetPos(30)
       kubihuri.SetPos(15)
-      sippo.SetPos(30)
+      time.sleep(0.5)
+      shippo.SetPos(0)
+      kubihuri.SetPos(0)
+      time.sleep(0.5)
+      shippo.SetPos(-30) 
+      kubihuri.SetPos(-15)
+      time.sleep(0.5)
+      shippo.SetPos(0)
+      kubihuri.SetPos(0)
 
     elif keyword == 'この問題難しい':
       print('がんばって')
       cmd = 140
-      kubihuri.SetPos(30)
       shippo.SetPos(30)
+      kubihuri.SetPos(15)
+      time.sleep(0.5)
+      shippo.SetPos(0)
+      kubihuri.SetPos(0)
+      time.sleep(0.5)
+      shippo.SetPos(-30) 
+      kubihuri.SetPos(-15)
+      time.sleep(0.5)
+      shippo.SetPos(0)
+      kubihuri.SetPos(0)
 
     elif keyword == '電源オン':
       print('なにかするの？')
       cmd = 10
       unazuki.SetPos(15)
+      time.sleep(0.5)
+      unazuki.SetPos(0)
+      time.sleep(0.5)
+      unazuki.SetPos(-15)
+      time.sleep(0.5)
+      unazuki.SetPos(0)
 
     elif keyword == 'おはよう':
       print('おはよう')
@@ -164,64 +211,84 @@ def response(keyword):
     elif keyword == 'がんばるね':
       print('がんばって')
       cmd = 400
-      mimi.SetPos(30)
+      mimi.SetPos(-30)
       unazuki.SetPos(30)
+      time.slepp(0.5)
+      mimi.SetPos(0)
+      unazuki.SetPos(0)
+
 
     elif keyword == 'あと何分':
       print('弱音を吐くな！')
       cmd = 500
-      mimi.SetPos(30)
-      unazuki.SetPos(30)
-
+      shippo.SetPos(30)
+      kubihuri.SetPos(15)
+      time.sleep(0.5)
+      shippo.SetPos(0)
+      kubihuri.SetPos(0)
+      time.sleep(0.5)
+      shippo.SetPos(-30) 
+      kubihuri.SetPos(-15)
+      time.sleep(0.5)
+      shippo.SetPos(0)
+      kubihuri.SetPos(0)
+ 
     elif keyword == '終わった':
       print('やったー')
       cmd = 600
-      mimi.SetPos(30)
-      unazuki.SetPos(15)
-      shippo.SetPos(30)
+      mimi.SetPos(-30)
+      unazuki.SetPos(-15)
+      time.sleep(0.5)
+      mimi.SetPos(0)
+      unazuki.SetPos(0)
 
     elif keyword == '終わり':
       print('おめでとう！遊ぼう')
       cmd = 610
-      mimi.SetPos(30)
-      unazuki.SetPos(15)
-      shippo.SetPos(30)
+      mimi.SetPos(-30)
+      unazuki.SetPos(-15)
+      time.sleep(0.5)
+      mimi.SetPos(0)
+      unazuki.SetPos(0)
 
     elif keyword == 'フィニッシュ':
       print('グッジョブ！！')
       cmd = 620
-      mimi.SetPos(30)
-      unazuki.SetPos(15)
-      shippo.SetPos(30)
+      mimi.SetPos(-30)
+      unazuki.SetPos(-15)
+      time.sleep(0.5)
+      mimi.SetPos(0)
+      unazuki.SetPos(0)
 
     elif keyword == 'できた':
       print('やったー！')
       cmd = 630
-      mimi.SetPos(30)
-      unazuki.SetPos(15)
-      shippo.SetPos(30)
+      mimi.SetPos(-30)
+      unazuki.SetPos(-15)
+      time.sleep(0.5)
+      mimi.SetPos(0)
+      unazuki.SetPos(0)
 
     elif keyword == '勉強終わったよ':
       print('おつかれさま')
       cmd = 640
-      mimi.SetPos(30)
-      unazuki.SetPos(15)
-      shippo.SetPos(30)
+      mimi.SetPos(-30)
+      unazuki.SetPos(-15)
+      time.sleep(0.5)
+      mimi.SetPos(0)
+      unazuki.SetPos(0)
 
     elif keyword == 'よし':
       print('どうしたの？')
       cmd = 700
-      kubihuri.SetPos(30)
 
     elif keyword == 'なんでもない':
       print('そっか')
       cmd = 710
-      kubihuri.SetPos(30)
 
     elif keyword == 'おやすみ':
       print('また明日ね')
       cmd = 1000
-      shippo.SetPos(30)
 
     elif keyword == 'いただきます':
       print('めしあがれ')
@@ -236,10 +303,6 @@ def response(keyword):
       print('何が食べたい？') 
       cmd = 1120
       mimi.SetPos(30) 
-
-    elif keyword == '勉強する':
-      print('時間はかろうか？')
-      cmd = 300
 
     elif keyword == '勉強する':
       print('時間はかろうか？')

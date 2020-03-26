@@ -35,9 +35,9 @@ if __name__ == "__main__":
 
 if __name__ == '__main__':
   unazuki = servo_Class(Channel=0, ZeroOffset=-5)
-  kubihuri = servo_Class(Channel=2, ZeroOffset=-5)
-  mimi = servo_Class(Channel=3, ZeroOffset=-5)
-  shippo = servo_Class(Channel=8, ZeroOffset=-5)
+  kubihuri = servo_Class(Channel=1, ZeroOffset=-5)
+  mimi = servo_Class(Channel=2, ZeroOffset=-5)
+  shippo = servo_Class(Channel=3, ZeroOffset=-5)
 
   unazuki.SetPos(0)
   kubihuri.SetPos(0)
