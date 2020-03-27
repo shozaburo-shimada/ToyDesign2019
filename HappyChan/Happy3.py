@@ -127,6 +127,10 @@ def response(keyword):
       time.sleep(0.5)
       kubihuri.SetPos(0)
 
+    elif keyword == 'ハッピー':
+      print('happy!!')
+      cmd = 88
+
     elif keyword == '眠い':
       print('起きろ！')
       cmd = 110
@@ -200,10 +204,6 @@ def response(keyword):
       print('おはよう')
       cmd = 200
 
-    elif keyword == '勉強する':
-      print('時間はかろうか？')
-      cmd = 300
-
     elif keyword == '今から勉強するね':
       print('がんばって')
       cmd = 310
@@ -234,13 +234,26 @@ def response(keyword):
       kubihuri.SetPos(0)
  
     elif keyword == '終わった':
-      print('やったー')
+      print('終わった')
       cmd = 600
       mimi.SetPos(-30)
       unazuki.SetPos(-15)
-      time.sleep(0.5)
+      shippo.SetPos(15)
+      time.sleep(0.3)
+      
       mimi.SetPos(0)
       unazuki.SetPos(0)
+      shippo.SetPos(-15)
+      time.sleep(0.3)
+      
+      mimi.SetPos(-30)
+      unazuki.SetPos(-15)
+      shippo.SetPos(15)
+      time.sleep(0.3)
+
+      mimi.SetPos(0)
+      unazuki.SetPos(0)
+      shippo.SetPos(-15)
 
     elif keyword == '終わり':
       print('おめでとう！遊ぼう')
@@ -300,13 +313,77 @@ def response(keyword):
       unazuki.SetPos(45)
 
     elif keyword == 'お腹空いた':
-      print('何が食べたい？') 
+      print('何が食べたい？')
       cmd = 1120
-      mimi.SetPos(30) 
+      mimi.SetPos(30)
+    
+    elif keyword =='いってきます':
+      print('いってきます')
+      mimi.SetPos(-30)
+      unazuki.SetPos(15)
+      shippo.SetPos(15)
+      time.sleep(0.3)
+      mimi.SetPos(0)
+      shippo.SetPos(-15)
+      time.sleep(0.3)
+      mimi.SetPos(30)
+      shippo.SetPos(15)
+      time.sleep(0.3)
+      mimi.SetPos(0)
+      shippoi.SetPos(0)
 
-    elif keyword == '勉強する':
-      print('時間はかろうか？')
+    elif keyword =='ただいま':
+      print('ただいま')
+      mimi.SetPos(-30)
+      unazuki.SetPos(15)
+      shippo.SetPos(15)
+      time.sleep(0.3)
+      mimi.SetPos(0)
+      shippo.SetPos(-15)
+      time.sleep(0.3)
+      mimi.SetPos(30)
+      shippo.SetPos(15)
+      time.sleep(0.3)
+      mimi.SetPos(0)
+      shippoi.SetPos(0)
+
+    elif keyword =='どうしたの':
+      print('どうしたの')
+      unazuki.SetPos(15)
+      kubihuri.SetPos(15)
+      time.sleep(0.3)
+      kubihuri.SetPos(-15)
+      time.sleep(0.3)
+      kubihuri.SetPos(0)
+
+    elif keyword =='しないといけないことあった':
+      print('しないといけないことあった')
+
+    elif keyword =='めんどくさい':
+      print('めんどくさい')
+      cmd = 2500
+      mimi.SetPos(-30)
+      kubihuri.SetPos(15)
+      time.sleep(0.3)
+      mimi.SetPos(30)
+      kubihuri.SetPos(-15)
+      time.sleep(0.3)
+      mimi.SetPos(-30)
+      kubihuri.SetPos(15)
+      time.sleep(0.3)
+      mimi.SetPos(0)
+      kubihuri.SetPos(0)
+
+    elif keyword =='こっちみて':
+      print('こっちみて')
+      cmd = 2600
+      unazuki.SetPos(15)
+      kubihuri.SetPos(30)
+
+    elif keyword =='勉強する':
+      print('勉強する')
       cmd = 300
+      unazuki.SetPos(-30)
       flagstate = 1
 
 #時間はかるモードに変える
