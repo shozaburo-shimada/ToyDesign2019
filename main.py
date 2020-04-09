@@ -107,7 +107,7 @@ if __name__ == "__main__":
                   flag_video2 = False
                   flag_video3 = False
                 if flag_video1 == False:
-                  command = "sudo omxplayer --win '0 0 1280 720' video1.mp4"
+                  command = "sudo omxplayer --win '0 0 1280 720' video/video1.mp4"
                   proc = subprocess.Popen(command, shell=True, stdin =subprocess.PIPE)
                   flag_video1 = True 
 
@@ -119,7 +119,7 @@ if __name__ == "__main__":
                   flag_video1 = False
                   flag_video3 = False
                 if flag_video2 == False:
-                  command = "sudo omxplayer --win '0 0 1280 720' video2.mp4"
+                  command = "sudo omxplayer --win '0 0 1280 720' video/video2.mp4"
                   proc = subprocess.Popen(command, shell=True, stdin =subprocess.PIPE)
                   flag_video2 = True 
 
@@ -131,7 +131,7 @@ if __name__ == "__main__":
                   flag_video1 = False
                   flag_video2 = False
                 if flag_video3 == False:              
-                  command = "sudo omxplayer --win '0 0 1280 720' video3.mp4"
+                  command = "sudo omxplayer --win '0 0 1280 720' video/video3.mp4"
                   proc = subprocess.Popen(command, shell=True, stdin =subprocess.PIPE)
                   flag_video3 = True 
 
@@ -139,15 +139,15 @@ if __name__ == "__main__":
               if i == 4:
                 flag_music = True
                 if music_num == 3:
-                  pygame.mixer.music.load("music1.mp3")
+                  pygame.mixer.music.load("music/music1.mp3")
                   pygame.mixer.music.play(0)
                   music_num = 1
                 elif music_num == 1:
-                  pygame.mixer.music.load("music2.mp3")
+                  pygame.mixer.music.load("music/music2.mp3")
                   pygame.mixer.music.play(0)
                   music_num = 2
                 elif music_num == 2:
-                  pygame.mixer.music.load("music3.mp3")
+                  pygame.mixer.music.load("music/music3.mp3")
                   pygame.mixer.music.play(0)
                   music_num = 3
 
