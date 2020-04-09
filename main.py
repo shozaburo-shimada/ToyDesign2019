@@ -6,29 +6,50 @@ import subprocess
 import Adafruit_MPR121.MPR121 as MPR121
 import pygame
 import serial
-
+import RPi.GPIO as GPIO
 
 if __name__ == "__main__":
-  cap = MPR121.MPR121()
+
+  # Init Motor Control
+  ain1 = 13 # Direction
+  ain2 = 15 # Enable
+  speed = 40
+  flag_motor = False
+  GPIO.setmode(GPIO.BOARD)
+  GPIO.setup(ain1, GPIO.OUT)
+  GPIO.setup(ain2, GPIO.OUT)
+  pwm = GPIO.PWM(ain2, 1000) # 1kHz
+
+  GPIO.output(ain1, GPIO.HIGH)
+  pwm.start(speed)
+
+  # Init music
   pygame.mixer.init()
+  music_num = 3
+  flag_music = False 
+  
+  # Init movie
+  flag_video1 = False
+  flag_video2 = False
+  flag_video3 = False
+
+  # Init Serial (Heartbeat)
   ser = serial.Serial('/dev/ttyS0',250000)
 
+  # Init captive
+  cap = MPR121.MPR121()
   if not cap.begin():
       print('Error initializing MPR121.  Check your wiring!')
       sys.exit(1)
 
+  last_touched = cap.touched()
+
 
   print('Press Ctrl-C to quit.')
-  last_touched = cap.touched()
-  flag_video1 = False
-  flag_video2 = False
-  flag_video3 = False
-  music_num = 3
-  flag_music = False
 
   try:
     while True:
-
+      '''
       try:
         hr = ser.read()
         hr = hr.decode()
@@ -61,6 +82,7 @@ if __name__ == "__main__":
           flag_music = True
       else:
         print("out of range")
+      '''
 
       #print(ord(hr))
       #time.sleep(1)
@@ -76,9 +98,8 @@ if __name__ == "__main__":
               print('last: {:012b}'.format(last_touched))
 
               print('{0} touched!\n'.format(i))
-              #if i == 0:
-                  # 0番目がタッチされた
-                  # movie0.mp4を再生
+              
+              # Touch no.1, playback movie no.1
               if i == 1:
                 if flag_video2 == True or flag_video3 == True:
                   proc.stdin.write('q')
@@ -90,6 +111,7 @@ if __name__ == "__main__":
                   proc = subprocess.Popen(command, shell=True, stdin =subprocess.PIPE)
                   flag_video1 = True 
 
+              # Touch no.2, playback movie no.2
               if i == 2:
                 if flag_video1 == True or flag_video3 == True:
                   proc.stdin.write('q')
@@ -101,6 +123,7 @@ if __name__ == "__main__":
                   proc = subprocess.Popen(command, shell=True, stdin =subprocess.PIPE)
                   flag_video2 = True 
 
+              # Touch no.3, playback movie no.3
               if i == 3:
                 if flag_video1 == True or flag_video2 == True:
                   proc.stdin.write('q')
@@ -112,6 +135,7 @@ if __name__ == "__main__":
                   proc = subprocess.Popen(command, shell=True, stdin =subprocess.PIPE)
                   flag_video3 = True 
 
+              # Toggle music
               if i == 4:
                 flag_music = True
                 if music_num == 3:
@@ -127,6 +151,7 @@ if __name__ == "__main__":
                   pygame.mixer.music.play(0)
                   music_num = 3
 
+              # Stop movie and music
               if i == 0:
                 if flag_video1 == True or flag_video2 == True or flag_video3 == True:
                   proc.stdin.write('q')
@@ -141,21 +166,60 @@ if __name__ == "__main__":
                   if music_num == 0:
                     music_num = 3
 
-          # i番目のポートが、前回までタッチされていて、かつ今回タッチされていない = リリースを検出
+              # Motor ON/OFF
+              if i == 5:
+                if flag_motor == True:
+                  print('Motor OFF')
+                  flag_motor = False
+                else:
+                  print('Motor ON')
+                  flag_motor = True
+              
+              # Control motor speed +
+              if i == 6:
+                if flag_motor == True:
+                  speed += 20
+                  if speed > 100:
+                    speed = 100
+                  print('Set speed: ' + str(speed))
 
+              # Control motor speed -
+	      if i == 7:
+                if flag_motor == True:
+                  speed -= 20
+                  if speed < -100:
+                    speed = -100
+                  print('Set speed: ' + str(speed))
+              
+
+          # i番目のポートが、前回までタッチされていて、かつ今回タッチされていない = リリースを検出
           if not current_touched & pin_bit and last_touched & pin_bit:
               print('curr: {:012b}'.format(current_touched))
               print('last: {:012b}'.format(last_touched))
 
               print('{0} released!\n'.format(i))
 
+      # Motor Control
+      if flag_motor == True:
+        # Set Direction
+        if speed > 0:
+          GPIO.output(ain1, GPIO.HIGH)
+        else:
+          GPIO.output(ain1, GPIO.LOW)
+        # Set Speed
+        pwm.ChangeDutyCycle(abs(speed))
 
+      else:
+        pwm.ChangeDutyCycle(0)
+
+      # Touch
       last_touched = current_touched
       time.sleep(0.1)
+
   except KeyboardInterrupt:
     print("\nEnd program\n")
-    #GPIO.cleanup()
-    #p.kill()
+    GPIO.cleanup()
+    proc.kill()
     #subprocess.call(["kill " + pid], shell=True)
-    #sock.close()
+    ser.close()
 
