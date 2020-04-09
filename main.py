@@ -10,18 +10,25 @@ import RPi.GPIO as GPIO
 
 if __name__ == "__main__":
 
+  GPIO.setmode(GPIO.BOARD)
+
   # Init Motor Control
   ain1 = 13 # Direction
   ain2 = 15 # Enable
   speed = 40
   flag_motor = False
-  GPIO.setmode(GPIO.BOARD)
   GPIO.setup(ain1, GPIO.OUT)
   GPIO.setup(ain2, GPIO.OUT)
   pwm = GPIO.PWM(ain2, 1000) # 1kHz
 
   GPIO.output(ain1, GPIO.HIGH)
   pwm.start(speed)
+
+  # Init LED Control
+  ledpin = 11 
+  flag_led = False
+  GPIO.setup(ledpin, GPIO.OUT)
+  GPIO.output(ledpin, GPIO.LOW)
 
   # Init music
   pygame.mixer.init()
@@ -107,7 +114,7 @@ if __name__ == "__main__":
                   flag_video2 = False
                   flag_video3 = False
                 if flag_video1 == False:
-                  command = "sudo omxplayer --win '0 0 1280 720' video/video1.mp4"
+                  command = "sudo omxplayer --loop --win '0 0 1280 720' video/video1.mp4"
                   proc = subprocess.Popen(command, shell=True, stdin =subprocess.PIPE)
                   flag_video1 = True 
 
@@ -119,7 +126,7 @@ if __name__ == "__main__":
                   flag_video1 = False
                   flag_video3 = False
                 if flag_video2 == False:
-                  command = "sudo omxplayer --win '0 0 1280 720' video/video2.mp4"
+                  command = "sudo omxplayer --no-osd --loop --win '0 0 1280 720' video/sota.mp4"
                   proc = subprocess.Popen(command, shell=True, stdin =subprocess.PIPE)
                   flag_video2 = True 
 
@@ -131,7 +138,7 @@ if __name__ == "__main__":
                   flag_video1 = False
                   flag_video2 = False
                 if flag_video3 == False:              
-                  command = "sudo omxplayer --win '0 0 1280 720' video/video3.mp4"
+                  command = "sudo omxplayer --loop --win '0 0 1280 720' video/video3.mp4"
                   proc = subprocess.Popen(command, shell=True, stdin =subprocess.PIPE)
                   flag_video3 = True 
 
@@ -139,15 +146,15 @@ if __name__ == "__main__":
               if i == 4:
                 flag_music = True
                 if music_num == 3:
-                  pygame.mixer.music.load("music/music1.mp3")
+                  pygame.mixer.music.load("music/aurora.mp3")
                   pygame.mixer.music.play(0)
                   music_num = 1
                 elif music_num == 1:
-                  pygame.mixer.music.load("music/music2.mp3")
+                  pygame.mixer.music.load("music/beneath.mp3")
                   pygame.mixer.music.play(0)
                   music_num = 2
                 elif music_num == 2:
-                  pygame.mixer.music.load("music/music3.mp3")
+                  pygame.mixer.music.load("music/looking.mp3")
                   pygame.mixer.music.play(0)
                   music_num = 3
 
@@ -190,7 +197,15 @@ if __name__ == "__main__":
                   if speed < -100:
                     speed = -100
                   print('Set speed: ' + str(speed))
-              
+
+              # LED on/off
+              if i == 8:
+                if flag_led == True:
+                  GPIO.output(ledpin, GPIO.LOW)
+                  flag_led = False
+                else:
+                  GPIO.output(ledpin, GPIO.HIGH)
+                  flag_led = True
 
           # i番目のポートが、前回までタッチされていて、かつ今回タッチされていない = リリースを検出
           if not current_touched & pin_bit and last_touched & pin_bit:
@@ -219,7 +234,7 @@ if __name__ == "__main__":
   except KeyboardInterrupt:
     print("\nEnd program\n")
     GPIO.cleanup()
+    ser.close()
     proc.kill()
     #subprocess.call(["kill " + pid], shell=True)
-    ser.close()
 
