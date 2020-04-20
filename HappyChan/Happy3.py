@@ -237,23 +237,33 @@ def response(keyword):
       print('終わった')
       cmd = 600
       mimi.SetPos(-30)
-      unazuki.SetPos(-15)
-      shippo.SetPos(15)
+      unazuki.SetPos(-7)
+      shippo.SetPos(-15)
       time.sleep(0.3)
       
       mimi.SetPos(0)
       unazuki.SetPos(0)
-      shippo.SetPos(-15)
+      shippo.SetPos(15)
       time.sleep(0.3)
       
       mimi.SetPos(-30)
-      unazuki.SetPos(-15)
-      shippo.SetPos(15)
+      unazuki.SetPos(-7)
+      shippo.SetPos(-15)
       time.sleep(0.3)
 
       mimi.SetPos(0)
       unazuki.SetPos(0)
+      shippo.SetPos(15)
+      time.sleep(0.3)
+
+      mimi.SetPos(-30)
+      unazuki.SetPos(-7)
       shippo.SetPos(-15)
+      time.sleep(0.3)
+
+      mimi.SetPos(0)
+      unazuki.SetPos(0)
+      shippo.SetPos(0)
 
     elif keyword == '終わり':
       print('おめでとう！遊ぼう')
@@ -377,13 +387,13 @@ def response(keyword):
     elif keyword =='こっちみて':
       print('こっちみて')
       cmd = 2600
-      unazuki.SetPos(15)
+      unazuki.SetPos(6)
       kubihuri.SetPos(30)
 
     elif keyword =='勉強する':
       print('勉強する')
       cmd = 300
-      unazuki.SetPos(-30)
+      unazuki.SetPos(-15)
       flagstate = 1
 
 #時間はかるモードに変える
