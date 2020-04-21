@@ -117,14 +117,10 @@ def response(keyword):
     if keyword == '疲れた':
       print('勉強終わったら遊べるぞ！')
       cmd = 100
-      unazuki.SetPos(15)
+      unazuki.SetPos(-6)
       kubihuri.SetPos(30)
-      time.sleep(0.5)
-      unazuki.SetPos(0)
-      kubihuri.SetPos(0)
-      time.sleep(0.5) 
-      kubihuri.SetPos(-30)
-      time.sleep(0.5)
+      time.sleep(0.8)
+      unazuki.SetPos(0) 
       kubihuri.SetPos(0)
 
     elif keyword == 'ハッピー':
@@ -192,12 +188,12 @@ def response(keyword):
     elif keyword == '電源オン':
       print('なにかするの？')
       cmd = 10
-      unazuki.SetPos(15)
-      time.sleep(0.5)
-      unazuki.SetPos(0)
-      time.sleep(0.5)
       unazuki.SetPos(-15)
-      time.sleep(0.5)
+      time.sleep(0.3)
+      unazuki.SetPos(0)
+      time.sleep(0.3)
+      unazuki.SetPos(15)
+      time.sleep(0.3)
       unazuki.SetPos(0)
 
     elif keyword == 'おはよう':
@@ -212,7 +208,7 @@ def response(keyword):
       print('がんばって')
       cmd = 400
       mimi.SetPos(-30)
-      unazuki.SetPos(30)
+      unazuki.SetPos(15)
       time.slepp(0.5)
       mimi.SetPos(0)
       unazuki.SetPos(0)
@@ -329,6 +325,7 @@ def response(keyword):
     
     elif keyword =='いってきます':
       print('いってきます')
+      cmd = 2100
       mimi.SetPos(-30)
       unazuki.SetPos(15)
       shippo.SetPos(15)
@@ -344,6 +341,7 @@ def response(keyword):
 
     elif keyword =='ただいま':
       print('ただいま')
+      cmd = 2200
       mimi.SetPos(-30)
       unazuki.SetPos(15)
       shippo.SetPos(15)
@@ -359,6 +357,7 @@ def response(keyword):
 
     elif keyword =='どうしたの':
       print('どうしたの')
+      cmd = 2300
       unazuki.SetPos(15)
       kubihuri.SetPos(15)
       time.sleep(0.3)
@@ -368,6 +367,7 @@ def response(keyword):
 
     elif keyword =='しないといけないことあった':
       print('しないといけないことあった')
+      cmd = 2400
 
     elif keyword =='めんどくさい':
       print('めんどくさい')
@@ -403,9 +403,9 @@ def response(keyword):
       print('にじゅぷんはかるよ')
       cmd = 20
 #現在の時間を取得
-      starttime = time.time()
-      settimer = 20
-      cmd = 77
+ #     starttime = time.time()
+ #     settimer = 2
+ #     cmd = 77
 #音声認識モードに戻す
       flagstate = 0
 
