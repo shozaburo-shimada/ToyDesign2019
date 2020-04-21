@@ -402,6 +402,7 @@ def response(keyword):
     if keyword == 'にじゅっぷん':
       print('にじゅぷんはかるよ')
       cmd = 20
+#cmdを送ってflagstate変えるのみに変更してあります
 #現在の時間を取得
  #     starttime = time.time()
  #     settimer = 2
