@@ -356,7 +356,7 @@ def move_servo(cmd):
     shippo.SetPos(0)
     kubihuri.SetPos(0)
 
-   elif cmd == 600:
+  elif cmd == 600:
     mimi.SetPos(-30)
     unazuki.SetPos(-7)
     shippo.SetPos(-15)
@@ -393,7 +393,7 @@ def move_servo(cmd):
     mimi.SetPos(0)
     unazuki.SetPos(0)
 
-   elif cmd == 620:
+  elif cmd == 620:
     mimi.SetPos(-30)
     unazuki.SetPos(-15)
     time.sleep(0.5)
@@ -440,7 +440,7 @@ def move_servo(cmd):
     shippo.SetPos(15)
     time.sleep(0.3)
     mimi.SetPos(0)
-    shippoi.SetPos(0)
+    shippo.SetPos(0)
 
   elif cmd == 2300:
     unazuki.SetPos(15)

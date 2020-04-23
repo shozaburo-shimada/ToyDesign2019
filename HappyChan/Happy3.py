@@ -308,6 +308,10 @@ def response(keyword):
     elif keyword == 'おやすみ':
       print('また明日ね')
       cmd = 1000
+      unazuki.SetPos(6)
+      mimi.SetPos(-30)
+      time.sleep(4.5)
+      mimi.SetPos(0)
 
     elif keyword == 'いただきます':
       print('めしあがれ')
