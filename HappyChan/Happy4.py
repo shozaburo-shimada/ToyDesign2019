@@ -230,7 +230,7 @@ def response(keyword):
       print('こっちみて')
       cmd = 2600
 
-    elif keyword =='勉強する':
+    elif keyword =='えんきょうする':
       print('勉強する')
       cmd = 300
       flagstate = 1
@@ -400,7 +400,7 @@ def move_servo(cmd):
     mimi.SetPos(-30)
     time.sleep(0.3)
     mimi.SetPos(0)
-    time.sleep(1)
+    time.sleep(2.5)
     unazuki.SetPos(0)
 
   elif cmd == 620:
@@ -428,6 +428,8 @@ def move_servo(cmd):
     shippo.SetPos(-15)
     time.sleep(0.3)
     shippo.SetPos(0)
+    time.sleep(2.3)
+    kubihuri.SetPos(0)
 
   elif cmd == 640:
     mimi.SetPos(-30)
