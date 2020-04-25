@@ -120,7 +120,8 @@ def response(keyword):
       cmd = 100
 
     elif keyword == 'ハッピー':
-      print('happy!!')
+   # elif keyword == 'ハッピー' or 'メイティ' or 'メイト' or 'メイ' or 'エイティ' or 'エイト':
+      print('happy!!!!!!!!!!!!!')
       cmd = 88
 
     elif keyword == '眠い':
@@ -163,11 +164,9 @@ def response(keyword):
       print('終わった')
       cmd = 600
 
-
     elif keyword == '終わり':
       print('おめでとう！遊ぼう')
       cmd = 610
-
 
     elif keyword == 'フィニッシュ':
       print('グッジョブ！！')
@@ -224,11 +223,16 @@ def response(keyword):
     elif keyword =='めんどくさい':
       print('めんどくさい')
       cmd = 2500
-     
-    elif keyword =='こっちみて':
+    
+    elif keyword == 'みて': 
+   # elif keyword =='こっちみて' or 'こっち' or 'みて' or 'こち' or 'こっちだよ':
       print('こっちみて')
       cmd = 2600
-     
+    
+    elif keyword == 'できた':
+      print('できた')
+      cmd = 2700
+ 
     elif keyword =='勉強する':
       print('勉強する')
       cmd = 300
@@ -271,12 +275,16 @@ def response(keyword):
 
 def move_servo(cmd):
   if cmd == 100:
-    unazuki.SetPos(-6)
+    mimi.SetPos(-30)
     kubihuri.SetPos(30)
-    time.sleep(0.8)
-    unazuki.SetPos(0) 
+    time.sleep(0.3)
+    kubihuri.SetPos(-30)
+    time.sleep(0.3)
+    kubihuri.SetPos(30)
+    time.sleep(0.3)
     kubihuri.SetPos(0)
-  
+    mimi.SetPos(0)
+
   elif cmd == 110:
     unazuki.SetPos(15)
     kubihuri.SetPos(30)
@@ -339,7 +347,7 @@ def move_servo(cmd):
   elif cmd == 400:
     mimi.SetPos(-30)
     unazuki.SetPos(15)
-    time.slepp(0.5)
+    time.sleep(0.5)
     mimi.SetPos(0)
     unazuki.SetPos(0)
 
@@ -426,7 +434,7 @@ def move_servo(cmd):
     shippo.SetPos(15)
     time.sleep(0.3)
     mimi.SetPos(0)
-    shippoi.SetPos(0)
+    shippo.SetPos(0)
 
   elif cmd == 2200:
     mimi.SetPos(-30)
@@ -466,10 +474,23 @@ def move_servo(cmd):
   elif cmd == 2600:
     unazuki.SetPos(6)
     kubihuri.SetPos(30)
+    time.sleep(5)
+    unazuki.SetPos(0)
+    kubihuri.SetPos(0)
+  
+  elif cmd == 2700:
+    kubihuri.SetPos(-30)
+    shippo.SetPos(-15)
+    time.sleep(0.3)
+    shippo.SetPos(15)
+    time.sleep(0.3)
+    shippo.SetPos(-15)
+    time.sleep(0.3)
+    shippo.SetPos(0)
+    kubihuri.SetPos(0)
 
   elif cmd == 300:
     unazuki.SetPos(-15)
-
 
   
 def notify_task():
