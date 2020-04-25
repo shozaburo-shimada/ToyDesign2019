@@ -1,73 +1,205 @@
-% BENKYOUSURU
+%BENKYOUSURU
 勉強する b e N ky o u s u r u
-% ITADAKIMASU
+%ITADAKIMASU
 いただきます i t a d a k i m a s u
-% GOCHISOUSAMA
+%GOCHISOUSAMA
 ごちそうさま g o ch i s o u s a m a
-% TSUKARETA
+%TSUKARETA
 疲れた ts u k a r e t a
-% NEMUI
+%NEMUI
 眠い n e m u i
-% ONAKASUITA
+%ONAKASUITA
 お腹空いた o n a k a s u i t a
-% KONOMONDAIMUZUKASHII
+%KONOMONDAIMUZUKASHII
 この問題難しい k o n o m o N d a i m u z u k a sh i i
-% IMAKARABENKYOUSURUNE
+%IMAKARABENKYOUSURUNE
 今から勉強するね i m a k a r a b e N ky o u s u r u n e
-% BENKYOUOWAQTAYO
+%BENKYOUOWAQTAYO
 勉強終わったよ b e N ky o u o w a q t a y o
-% OHAYOU
+%OHAYOU
 おはよう o h a y o u
-% OYASUMI
+%OYASUMI
 おやすみ o y a s u m i
-% DENGENON
-電源オン d e N g e N o N
-% GANBARUNE
+%GANBARUNE
 がんばるね g a N b a r u n e
-% ATONANPUN
+%ATONANPUN
 あと何分 a t o n a N p u N
-% TSUKARECHAQTA
+%TSUKARECHAQTA
 疲れちゃった ts u k a r e ch a q t a
-% OWARINISHITAI
+%OWARINISHITAI
 終わりにしたい o w a r i n i sh i t a i
-% ASOBITAI
+%ASOBITAI
 遊びたい a s o b i t a i
-% OWAQTA
+%OWAQTA
 終わった o w a q t a
-% OWARI
+%OWARI
 終わり o w a r i
-% FINIQSHU
+%FINIQSHU
 フィニッシュ f i n i q sh u
-% YOSHI
+%YOSHI
 よし y o sh i
-% NANDEMONAI
+%NANDEMONAI
 なんでもない n a N d e m o n a i
-% ATOGOFUN
-あと五分 a t o g o f u N
-% NIJUQPUN
+%NIJUQPUN
 にじゅっぷん n i j u q p u N
-% SANJUQPUN
+%SANJUQPUN
 さんじゅっぷん s a N j u q p u N
-% YONJUUGOFUN
+%YONJUUGOFUN
 よんじゅうごふん y o N j u u g o f u N
-% ROKUJUQPUN
+%ROKUJUQPUN
 ろくじゅっぷん r o k u j u q p u N
-% IMANOSHINCHOKUWA
+%IMANOSHINCHOKUWA
 いまの進捗は i m a n o sh i N ch o k u w a
-% HAQPII
+%HAQPII
 ハッピー h a q p i i
-% TADAIMA
+%TADAIMA
 ただいま t a d a i m a
-% IQTEKIMASU
+%IQTEKIMASU
 いってきます i q t e k i m a s u
-% DOUSHITANO
+%DOUSHITANO
 どうしたの d o u sh i t a n o
-% SHINAITOIKENAIKOTOAQTA
+%SHINAITOIKENAIKOTOAQTA
 しないといけないことあった sh i n a i t o i k e n a i k o t o a q t a
-% MENDOKUSAI
+%MENDOKUSAI
 めんどくさい m e N d o k u s a i
-% KOQCHIMITE
+%KOQCHIMITE
 こっちみて k o q ch i m i t e
+%HAQPI
+ハッピ h a q p i
+%HAPI
+ハピ h a p i
+%HAQHII
+ハッヒー h a q h i i
+%MEITI
+メイティ m e i t i
+%MEITO
+メイト m e i t o
+%MEI
+メイ m e i
+%EITI
+エイティ e i t i
+%EITO
+エイト e i t o
+%MEITEI
+メイテイ m e i t e i
+%BENKYOU
+勉強 b e N ky o u
+%ENKYOUSURU
+えんきょうする e N ky o u s u r u
+%ENKYOU
+えんきょう e N ky o u
+%GANBARU
+がんばる g a N b a r u
+%BARUNE
+ばるね b a r u n e
+%GANBA
+がんば g a N b a
+%GANBAQTE
+がんばって g a N b a q t e
+%ATOANPUN
+あとあんぷん a t o a N p u N
+%DOREKURAI
+どれくらい d o r e k u r a i
+%NANPUN
+なんぷん n a N p u N
+%KOQCHI
+こっち k o q ch i
+%MITE
+みて m i t e
+%KOCHI
+こち k o ch i
+%KOQCHIDAYO
+こっちだよ k o q ch i d a y o
+%TSUKARE
+つかれ ts u k a r e
+%TSUKARETAYO
+つかれたよ ts u k a r e t a y o
+%UKARETA
+うかれた u k a r e t a
+%FIQSHU
+フィッシュ f i q sh u
+%INIQSHU
+イニッシュ i n i q sh u
+%HINIQSHU
+ヒニッシュ h i n i q sh u
+%HINIIQSHU
+ヒニイシュ h i n i i q sh u
+%WARI
+わり w a r i
+%OWARIMASHITA
+おわりました o w a r i m a sh i t a
+%OYASU
+おやす o y a s u
+%YASUMI
+やすみ y a s u m i
+%ASUMI
+あすみ a s u m i
+%TARAIMA
+たらいま t a r a i m a
+%ARAIMA
+あらいま a r a i m a
+%TADAI
+ただい t a d a i
+%DEKITA
+できた d e k i t a
+%DEKETA
+でけた d e k e t a
+%EKITA
+えきた e k i t a
+%KITA
+きた k i t a
+%OWATA
+おわた o w a t a
+%WAQTA
+わった w a q t a
+%DOSHITANO
+どしたの d o sh i t a n o
+%DOUSARETA
+どうされた d o u s a r e t a
+%DOSHITA
+どした d o sh i t a
+%SHINAITO
+しないと sh i n a i t o
+%INAITO
+いないと i n a i t o
+%SABOQTEIRUTO
+さぼっていると s a b o q t e i r u t o
+%SABO
+さぼ s a b o
+%SABOQTE
+さぼって s a b o q t e
+%NETEIRUTO
+ねていると n e t e i r u t o
+%NETE
+ねて n e t e
+%NEMUQTEIRUTO
+ねむっていると n e m u q t e i r u t o
+%NEUQTEIRUTO
+ねうっていると n e u q t e i r u t o
+%NEMUQTE
+ねむって n e m u q t e
+%EMUQTE
+えむって e m u q t e
+%TOMAQTEIRUTO
+止まっていると t o m a q t e i r u t o
+%TOMAQTE
+とまって t o m a q t e
+%TOMA
+とま t o m a
+%MENDOI
+めんどい m e N d o i
+%MENDOU
+めんどう m e N d o u
+%MENDOUKUSAI
+めんどうくさい m e N d o u k u s a i
+%ENDOI
+えんどい e N d o i
+%YOTEINOJIKAN
+予定の時間 y o t e i n o j i k a N
+%YOTEI
+予定 y o t e i
+%OTEI
+おてい o t e i
 % NS_B
 [s] silB
 % NS_E
