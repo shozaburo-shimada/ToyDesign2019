@@ -217,18 +217,26 @@ def response(keyword):
       print('どうしたの')
       cmd = 2300
       
-    elif keyword =='しないといけないことあった':
-      print('しないといけないことあった')
-      cmd = 2400
-
     elif keyword =='めんどくさい':
       print('めんどくさい')
       cmd = 2500
-    
+
     elif keyword == 'こっちみて': 
    # elif keyword =='こっちみて' or 'こっち' or 'みて' or 'こち' or 'こっちだよ':
       print('こっちみて')
       cmd = 2600
+
+    elif keyword =='さぼっていると':
+      print('さぼっていると')
+      cmd = 2700
+    
+    elif keyword =='しないといけないことあった':
+      print('しないといけないことあった')
+      cmd = 2800
+
+    elif keyword =='予定の時間':
+      print('予定の時間')
+      cmd = 2900
 
     elif keyword =='えんきょうする':
       print('勉強する')
@@ -345,17 +353,11 @@ def move_servo(cmd):
     unazuki.SetPos(0)
 
   elif cmd == 500:
-    shippo.SetPos(30)
-    kubihuri.SetPos(15)
-    time.sleep(0.5)
-    shippo.SetPos(0)
-    kubihuri.SetPos(0)
-    time.sleep(0.5)
-    shippo.SetPos(-30) 
-    kubihuri.SetPos(-15)
-    time.sleep(0.5)
-    shippo.SetPos(0)
-    kubihuri.SetPos(0)
+    mimi.SetPos(-30)
+    unazuki.SetPos(-15)
+    time.sleep(2.6)
+    mimi.SetPos(0)
+    unazuki.SetPos(0)
 
   elif cmd == 600:
     mimi.SetPos(-30)
@@ -514,14 +516,56 @@ def move_servo(cmd):
     kubihuri.SetPos(0)
   
   elif cmd == 2700:
-    kubihuri.SetPos(-30)
-    shippo.SetPos(-15)
+    kubihuri.SetPos(15)
     time.sleep(0.3)
+    kubihuri.SetPos(-15)
+    time.sleep(0.3)
+    kubihuri.SetPos(15)
+    time.sleep(0.3)
+    kubihuri.SetPos(-15)
+    time.sleep(0.3)
+    kubihuri.SetPos(15)
+    time.sleep(1.3)
+    kubihuri.SetPos(0)
+
+  elif cmd == 2800:
+    mimi.SetPos(-30)
+    unazuki.SetPos(-7)
     shippo.SetPos(15)
     time.sleep(0.3)
+    mimi.SetPos(0)
+    unazuki.SetPos(0)
     shippo.SetPos(-15)
     time.sleep(0.3)
+    mimi.SetPos(-30)
+    unazuki.SetPos(-7)
+    shippo.SetPos(15)
+    time.sleep(0.3)
+    mimi.SetPos(-30)
+    unazuki.SetPos(-7)
+    shippo.SetPos(15)
+    time.sleep(0.3)
+    mimi.SetPos(0)
+    unazuki.SetPos(0)
     shippo.SetPos(0)
+
+  elif cmd == 2900:
+    mimi.SetPos(-30)
+    kubihuri.SetPos(-15)
+    time.sleep(0.3)  
+    mimi.SetPos(0)
+    kubihuri.SetPos(15)
+    time.sleep(0.3)
+    mimi.SetPos(-30)
+    kubihuri.SetPos(-15)
+    time.sleep(0.3)
+    mimi.SetPos(0)
+    kubihuri.SetPos(15)
+    time.sleep(0.3)
+    mimi.SetPos(-30)
+    kubihuri.SetPos(-15)
+    time.sleep(0.3)
+    mimi.SetPos(0)
     kubihuri.SetPos(0)
 
   elif cmd == 300:
