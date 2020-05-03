@@ -161,7 +161,7 @@ def response(keyword):
       print('弱音を吐くな！')
       cmd = 500
        
-    elif keyword == 'おわた':
+    elif keyword == '終わった':
       print('終わった')
       cmd = 600
 
@@ -213,7 +213,7 @@ def response(keyword):
       print('ただいま')
       cmd = 2200
      
-    elif keyword =='どしたの':
+    elif keyword =='どうしたの':
       print('どうしたの')
       cmd = 2300
       
@@ -342,7 +342,18 @@ def move_servo(cmd):
 
   elif cmd == 200:
     unazuki.SetPos(-15)
-    time.sleep(2)
+    shippo.SetPos(-15)
+    time.sleep(0.3)
+    shippo.SetPos(15)
+    time.sleep(0.3)
+    shippo.SetPos(-15)
+    time.sleep(0.3)
+    shippo.SetPos(15)
+    time.sleep(0.3)
+    shippo.SetPos(-15)
+    time.sleep(0.3)
+    shippo.SetPos(0)
+    time.sleep(0.3)
     unazuki.SetPos(0)
 
   elif cmd == 400:
@@ -355,7 +366,14 @@ def move_servo(cmd):
   elif cmd == 500:
     mimi.SetPos(-30)
     unazuki.SetPos(-15)
-    time.sleep(2.6)
+    kubihuri.SetPos(15)
+    time.sleep(0.3)
+    kubihuri.SetPos(-15)
+    time.sleep(0.3)
+    kubihuri.SetPos(15)
+    time.sleep(0.3)
+    kubihuri.SetPos(0)
+    time.sleep(1.5)
     mimi.SetPos(0)
     unazuki.SetPos(0)
 
@@ -444,7 +462,7 @@ def move_servo(cmd):
     mimi.SetPos(0)
     unazuki.SetPos(-15)
     time.sleep(0.3)
-    unazuki.SetPos(6)
+    unazuki.SetPos(0)
     time.sleep(0.3)
     unazuki.SetPos(-15)
     time.sleep(0.3)
@@ -486,6 +504,7 @@ def move_servo(cmd):
     shippo.SetPos(0)
 
   elif cmd == 2300:
+    time.sleep(0.2)
     unazuki.SetPos(6)
     kubihuri.SetPos(15)
     time.sleep(0.3)
