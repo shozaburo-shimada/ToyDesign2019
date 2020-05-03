@@ -504,7 +504,7 @@ def move_servo(cmd):
     shippo.SetPos(0)
 
   elif cmd == 2300:
-    time.sleep(0.2)
+    time.sleep(0.7)
     unazuki.SetPos(6)
     kubihuri.SetPos(15)
     time.sleep(0.3)
