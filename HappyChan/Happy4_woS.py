@@ -623,6 +623,7 @@ settimer = 0
 if __name__ == "__main__":
   print("Start Happy-chan")  
 
+  '''
   unazuki = servo_Class(Channel=0, ZeroOffset=-5)
   kubihuri = servo_Class(Channel=1, ZeroOffset=-5)
   mimi = servo_Class(Channel=2, ZeroOffset=-5)
@@ -632,7 +633,8 @@ if __name__ == "__main__":
   kubihuri.SetPos(0)
   mimi.SetPos(0)
   shippo.SetPos(0)
-
+  '''
+  
 #  try:
 #    while True:
 #      print("45")
