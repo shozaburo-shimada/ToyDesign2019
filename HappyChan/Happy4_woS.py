@@ -278,6 +278,7 @@ def response(keyword):
       cmd = 77
       flagstate = 0
 
+'''
 def move_servo(cmd):
   if cmd == 100:
     mimi.SetPos(-30)
@@ -589,7 +590,7 @@ def move_servo(cmd):
 
   elif cmd == 300:
     unazuki.SetPos(-15)
-
+'''
   
 def notify_task():
   global cmd
@@ -745,7 +746,7 @@ if __name__ == "__main__":
       #BLE Notify
       if cmd != 0:
         notify_task() 
-        move_servo(cmd)
+        #move_servo(cmd)
         cmd = 0
 
       #Timer
